@@ -4229,6 +4229,24 @@ const Optimizer = {
     }
     return currentRarityWithCandidateRankingArray;
   },
+  createRankingArrayWithoutCandidate(candidateName, skillPairing) {
+    let candidate = Optimizer.rosterLibrary[candidateName];
+    let currentRarityRankingArray = Optimizer.voyageSkillRankings.currentRarity[skillPairing];
+    let currentRarityWithoutCandidateRankingArray = [];
+    let currentRarityIndex = 0;
+    let candidatePlaced = false;
+    while (currentRarityIndex < currentRarityRankingArray.length) {
+      let crew = Optimizer.rosterLibrary[currentRarityRankingArray[currentRarityIndex]];
+      if (candidateName !== crew.name) {
+        currentRarityWithoutCandidateRankingArray.push(candidateName);
+        currentRarityIndex++;
+      } else {
+        currentRarityWithoutCandidateRankingArray.push(crew.name);
+        currentRarityIndex++;
+      }
+    }
+    return currentRarityWithoutCandidateRankingArray;
+  },
   findBestCrewWithRarityDependentCandidate(rankArray, candidateName) {
     Optimizer.resetVoyageSkillPools();
     let skillPools = Optimizer.voyageSkillPools;
@@ -4264,6 +4282,41 @@ const Optimizer = {
     let voyageCrew = skillPools.voyageCrew.assignedCrew;
     return voyageCrew;
   },
+  findBestCrewWithoutCandidate(rankArray) {
+    Optimizer.resetVoyageSkillPools();
+    let skillPools = Optimizer.voyageSkillPools;
+    let rankIndex = 0;
+    while (!skillPools.voyageCrew.full) {
+      //console.log(`While loop trying to process ${citationCandidate} in ${skillPairing} voyages`);
+      let crewName = rankArray[rankIndex];
+      let crew = Optimizer.rosterLibrary[crewName];
+      //console.log(`${crewName}is rank ${rankIndex + 1} for ${skillPairing} voyages. Assessing.`);
+      //console.log(crew);
+      //If there is room in the immediate seats available and if they're already invested
+      //console.log(`Assessing Skill Pools:`);
+      //console.log(skillPools);
+      //console.log(`Assessing signature ${crew.skillSet.signature}`);
+      if (!skillPools[crew.skillSet.signature].full) {
+        //console.log(`Entering the skillset Signature check! chronsInvested(${crew.chronsInvested}), crew.name(${crew.name}), citationCandidate(${citationCandidate})`);
+        if (crew.chronsInvested) {
+          //console.log("Entering the invested or trainee loop");
+          Optimizer.assignCrewToPools(skillPools[crew.skillSet.signature], crew.name);
+          //Optimizer.assessPoolVacancies(Optimizer.voyageSkillPools.voyageCrew);
+          rankIndex++;
+        } else {
+          rankIndex++;
+        }
+        //console.log(`${crewName} was added to the ${skillPairing} voyage`);
+      } else if (skillPools[crew.skillSet.signature].full) {
+        //console.log(`${crewName} is not good enough for ${skillPairing} voyages`);
+        rankIndex++;
+      } else {
+        console.log("We're still stuck in an infinite while loop?!");
+      }
+    }
+    let voyageCrew = skillPools.voyageCrew.assignedCrew;
+    return voyageCrew;
+  },
   findEVofVoyageCrewWithRarityDependentCandidate(voyageCrew, skillPairing, candidateName, rarityLevel) {
     let candidate = Optimizer.rosterLibrary[candidateName];
     let totalVoyageEV = 0;
@@ -4274,6 +4327,15 @@ const Optimizer = {
       } else {
         totalVoyageEV += crew.skillData[crew.rarity].voyageMetrics[skillPairing];
       }
+    });
+    return totalVoyageEV;
+  },
+  findEVofVoyageCrewWithoutCandidate(voyageCrew, skillPairing) {
+    let candidate = Optimizer.rosterLibrary[candidateName];
+    let totalVoyageEV = 0;
+    voyageCrew.forEach(crewName => {
+      let crew = Optimizer.rosterLibrary[crewName];
+      totalVoyageEV += crew.skillData[crew.rarity].voyageMetrics[skillPairing];
     });
     return totalVoyageEV;
   },
@@ -4288,6 +4350,19 @@ const Optimizer = {
 
         //To get the EV of the crew with candidate at current rarity. It is possible that a candidate which is relevant at max rarity will not get picked at their current rarity
         //This will correctly reduce their EV/citation, reflecting a true increase of potential while fully cited while also properly suggesting that they might not be the best next choice
+
+        // Philsophy change. Compare EV of current crew with candidate FF
+        //Find EV of current crew, to get candidate's total contribution
+        let voyageRankingsWithoutCandidate = Optimizer.createRankingArrayWithoutCandidate(candidate.name, skillPairing);
+        console.log(`${skillPairing} voyage ranking array without ${candidate.name}`);
+        console.log(voyageRankingsWithoutCandidate);
+        let bestCrewWithoutCandidate = Optimizer.findBestCrewWithoutCandidate(voyageRankingsWithoutCandidate, candidate.name);
+        console.log(`${skillPairing} voyage crew without ${candidate.name}`);
+        console.log(bestCrewWithoutCandidate);
+        let voyageEVWithoutCandidate = Optimizer.findEVofVoyageCrewWithoutCandidate(bestCrewWithoutCandidate, skillPairing);
+        console.log(`${skillPairing} voyage EV without ${candidate.name}`);
+        console.log(voyageEVWithoutCandidate);
+
         let voyageRankingWithCandidateAtCurrentRarity = Optimizer.createCandidateRarityRankingArray(candidate.name, candidate.rarity, skillPairing);
         console.log(`${skillPairing} voyage ranking array with ${candidate.name} at current rarity:`);
         console.log(voyageRankingWithCandidateAtCurrentRarity);
@@ -4309,8 +4384,12 @@ const Optimizer = {
         console.log(`${skillPairing} voyage EV with ${candidate.name} at max rarity`);
         console.log(voyageEVWithCandidateAtMaxRarity);
 
-        Optimizer.topCrewToCite[candidate.name].totalEVPerCitation += (voyageEVWithCandidateAtMaxRarity - voyageEVWithCandidateAtCurrentRarity)/(candidate.maxRarity - candidate.rarity);
-        Optimizer.topCrewToCite[candidate.name].totalEVRemaining += voyageEVWithCandidateAtMaxRarity - voyageEVWithCandidateAtCurrentRarity;
+        Optimizer.topCrewToCite[candidate.name].totalEVContribution +=
+          voyageEVWithCandidateAtMaxRarity - voyageEVWithoutCandidate;
+        Optimizer.topCrewToCite[candidate.name].totalEVRemaining +=
+          voyageEVWithCandidateAtMaxRarity - voyageEVWithCandidateAtCurrentRarity;
+        Optimizer.topCrewToCite[candidate.name].totalEVPerCitation +=
+          (voyageEVWithCandidateAtMaxRarity - voyageEVWithCandidateAtCurrentRarity)/(candidate.maxRarity - candidate.rarity);
       });
     }
   },
