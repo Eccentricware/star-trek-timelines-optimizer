@@ -3965,29 +3965,31 @@ const Optimizer = {
   },
   sortCrewToTrain() {
     let sortingArray = [];
+
     for (let crewName in Optimizer.topCrewToTrain) {
       sortingArray.push(crewName);
     }
+
     while (sortingArray.length > 0) {
       console.log("Finding next best crew");
-      let highestContribingTrainee = '';
+      let highestContributingTrainee = '';
       let highestContributedEV = -1;
       sortingArray.forEach(crewName => {
         if (Optimizer.topCrewToTrain[crewName].totalEVAdded > highestContributedEV) {
-          highestContribingTrainee = crewName;
+          highestContributingTrainee = crewName;
           highestContributedEV = Optimizer.topCrewToTrain[crewName].totalEVAdded
         }
       });
-      console.log(`Highest contributing trainee is ${highestContribingTrainee} for current crew`);
+      console.log(`Highest contributing trainee is ${highestContributingTrainee} for current crew`);
       console.log(sortingArray);
       Optimizer.rankedCrewToTrain.push({
-        name: highestContribingTrainee,
+        name: highestContributingTrainee,
         addedEV: highestContributedEV,
-        currentRarity: Optimizer.rosterLibrary[highestContribingTrainee].rarity,
-        maxRarity: Optimizer.rosterLibrary[highestContribingTrainee].maxRarity,
+        currentRarity: Optimizer.rosterLibrary[highestContributingTrainee].rarity,
+        maxRarity: Optimizer.rosterLibrary[highestContributingTrainee].maxRarity,
       });
 
-      sortingArray.splice(sortingArray.indexOf(highestContribingTrainee), 1);
+      sortingArray.splice(sortingArray.indexOf(highestContributingTrainee), 1);
     }
   },
   findCrewNotCited() {
@@ -4197,6 +4199,7 @@ const Optimizer = {
           } else {
             Optimizer.topCrewToCite[citedCrew] = {
               voyagesImproved: [skillPairing],
+              totalEVContribution: 0,
               citationsUntilRelevancy: 0,
               totalEVPerCitation: 0,
               totalEVNextCitation: 0,
@@ -4233,18 +4236,11 @@ const Optimizer = {
     let candidate = Optimizer.rosterLibrary[candidateName];
     let currentRarityRankingArray = Optimizer.voyageSkillRankings.currentRarity[skillPairing];
     let currentRarityWithoutCandidateRankingArray = [];
-    let currentRarityIndex = 0;
-    let candidatePlaced = false;
-    while (currentRarityIndex < currentRarityRankingArray.length) {
-      let crew = Optimizer.rosterLibrary[currentRarityRankingArray[currentRarityIndex]];
-      if (candidateName !== crew.name) {
-        currentRarityWithoutCandidateRankingArray.push(candidateName);
-        currentRarityIndex++;
-      } else {
-        currentRarityWithoutCandidateRankingArray.push(crew.name);
-        currentRarityIndex++;
+    currentRarityRankingArray.forEach(crewName => {
+      if (crewName !== candidateName) {
+        currentRarityWithoutCandidateRankingArray.push(crewName);
       }
-    }
+    });
     return currentRarityWithoutCandidateRankingArray;
   },
   findBestCrewWithRarityDependentCandidate(rankArray, candidateName) {
@@ -4331,7 +4327,6 @@ const Optimizer = {
     return totalVoyageEV;
   },
   findEVofVoyageCrewWithoutCandidate(voyageCrew, skillPairing) {
-    let candidate = Optimizer.rosterLibrary[candidateName];
     let totalVoyageEV = 0;
     voyageCrew.forEach(crewName => {
       let crew = Optimizer.rosterLibrary[crewName];
@@ -4399,20 +4394,21 @@ const Optimizer = {
       sortingArray.push(crewName);
     }
     while (sortingArray.length > 0) {
-      let highestContribingTrainee = '';
+      let highestContributingTrainee = '';
       let highestContributedEV = 0;
       sortingArray.forEach(crewName => {
-        if (Optimizer.topCrewToCite[crewName].totalEVRemaining > highestContributedEV) {
-          highestContribingTrainee = crewName;
-          highestContributedEV = Optimizer.topCrewToCite[crewName].totalEVRemaining
+        if (Optimizer.topCrewToCite[crewName].totalEVContribution > highestContributedEV) {
+          highestContributingTrainee = crewName;
+          highestContributedEV = Optimizer.topCrewToCite[crewName].totalEVContribution
         }
       });
       Optimizer.rankedCrewToCite.push({
-        name: highestContribingTrainee,
-        evPerCitation: Optimizer.topCrewToCite[highestContribingTrainee].totalEVPerCitation,
-        totalEVRemaining: Optimizer.topCrewToCite[highestContribingTrainee].totalEVRemaining
+        name: highestContributingTrainee,
+        totalEVContribution: Optimizer.topCrewToCite[highestContributingTrainee].totalEVContribution,
+        totalEVRemaining: Optimizer.topCrewToCite[highestContributingTrainee].totalEVRemaining,
+        evPerCitation: Optimizer.topCrewToCite[highestContributingTrainee].totalEVPerCitation
       });
-      sortingArray.splice(sortingArray.indexOf(highestContribingTrainee), 1);
+      sortingArray.splice(sortingArray.indexOf(highestContributingTrainee), 1);
     }
   },
 };
