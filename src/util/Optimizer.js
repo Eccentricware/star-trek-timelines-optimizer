@@ -3616,7 +3616,7 @@ const Optimizer = {
         //console.log(`Assessing Skill Pools:`);
         //console.log(skillPools);
         //console.log(`Assessing signature ${crew.skillSet.signature}`);
-        if (!skillPools[crew.skillSet.signature].full && crew.chronsInvested) {
+        if (!skillPools[crew.skillSet.signature].full && crew.chronsInvested) { //Error is here
           Optimizer.assignCrewToPools(skillPools[crew.skillSet.signature], crew.name);
           //Optimizer.assessPoolVacancies(Optimizer.voyageSkillPools.voyageCrew);
           rankIndex++;
@@ -3987,6 +3987,8 @@ const Optimizer = {
         addedEV: highestContributedEV,
         currentRarity: Optimizer.rosterLibrary[highestContributingTrainee].rarity,
         maxRarity: Optimizer.rosterLibrary[highestContributingTrainee].maxRarity,
+        skills: Optimizer.rosterLibrary[highestContributingTrainee].skillSet.signature.split('/'),
+        voyagesImproved: Optimizer.topCrewToTrain[highestContributingTrainee].voyagesImproved
       });
 
       sortingArray.splice(sortingArray.indexOf(highestContributingTrainee), 1);

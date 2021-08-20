@@ -1,8 +1,9 @@
 import React from 'react';
+import CrewToTrainList from '../CrewToTrainList/CrewToTrainList.jsx';
 
-const CrewToTrainDisplay = () => {
+const CrewToTrainDisplay = ({rankedCrewToTrain}) => {
   return (
-    <div>I actually do know how to use React but check the console for now!</div>
+    <CrewToTrainList rankedCrewToTrain={rankedCrewToTrain}/>
   )
 }
 

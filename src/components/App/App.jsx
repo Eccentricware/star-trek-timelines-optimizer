@@ -49,12 +49,7 @@ function App() {
     <div className="App">
       {rankedCrewToTrain.length === 0 ? <SaveImport label={saveData} importData={importData} optimizer={Optimizer} /> : null}
       {rankedCrewToTrain.length > 0 ? <CrewToTrainDisplay rankedCrewToTrain={rankedCrewToTrain}/> : null}
-      <div>Just copy-paste your save file into the field like you would on DataCore.</div>
-      <div>Scroll to the bottom where you can find your ranked crew to train and cite!</div>
-      <div>Game roster will be constantly synced after migration to <a href='https://datacore.app/' className="link">DataCore!</a></div>
-      <div>There are tons of other resources there in the meantime, check it out!</div>
-      <div>---</div>
-      <div>Last Game Roster Update: 8-8-2021</div>
+
     </div>
   );
 }
