@@ -49,7 +49,7 @@ function App() {
     <div className="App">
       {rankedCrewToTrain.length === 0 ? <SaveImport label={saveData} importData={importData} optimizer={Optimizer} /> : null}
       {rankedCrewToTrain.length > 0 ? <CrewToTrainDisplay rankedCrewToTrain={rankedCrewToTrain}/> : null}
-
+      <div className="update-date">Last Game Roster Update: 8-20-2021</div>
     </div>
   );
 }
