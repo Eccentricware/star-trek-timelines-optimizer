@@ -52,7 +52,7 @@ Body {
 }
 
 .update-date {
-  position: absolute;
+  position: sticky;
   bottom: 0px;
   left: 0px;
 }

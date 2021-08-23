@@ -3607,7 +3607,7 @@ const Optimizer = {
       };
       */
       //Used to find the best crew, but not seat them. These crew have been observed to have a valid seat waiting for them, even with the automated seating code failing
-      while (!skillPools.voyageCrew.full) {
+      while (!skillPools.voyageCrew.full && rankIndex < rankArray.length) {
         let crewName = rankArray[rankIndex];
         let crew = Optimizer.rosterLibrary[crewName];
         //console.log(`${crewName}is rank ${rankIndex + 1} for ${skillPairing} voyages. Assessing.`);
@@ -3904,7 +3904,7 @@ const Optimizer = {
         };
         */
         //Used to find the best crew, but not seat them. These crew have been observed to have a valid seat waiting for them, even with the automated seating code failing
-        while (!skillPools.voyageCrew.full) {
+        while (!skillPools.voyageCrew.full && rankIndex < rankArray.length) {
           //console.log(`While loop trying to process ${traineeName} in ${skillPairing} voyages`);
           let crewName = rankArray[rankIndex];
           let crew = Optimizer.rosterLibrary[crewName];
@@ -4249,7 +4249,7 @@ const Optimizer = {
     Optimizer.resetVoyageSkillPools();
     let skillPools = Optimizer.voyageSkillPools;
     let rankIndex = 0;
-    while (!skillPools.voyageCrew.full) {
+    while (!skillPools.voyageCrew.full && rankIndex < rankArray.length) {
       //console.log(`While loop trying to process ${citationCandidate} in ${skillPairing} voyages`);
       let crewName = rankArray[rankIndex];
       let crew = Optimizer.rosterLibrary[crewName];
@@ -4284,7 +4284,7 @@ const Optimizer = {
     Optimizer.resetVoyageSkillPools();
     let skillPools = Optimizer.voyageSkillPools;
     let rankIndex = 0;
-    while (!skillPools.voyageCrew.full) {
+    while (!skillPools.voyageCrew.full && rankIndex < rankArray.length) {
       //console.log(`While loop trying to process ${citationCandidate} in ${skillPairing} voyages`);
       let crewName = rankArray[rankIndex];
       let crew = Optimizer.rosterLibrary[crewName];
