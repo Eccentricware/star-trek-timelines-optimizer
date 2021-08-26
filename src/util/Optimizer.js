@@ -3221,6 +3221,11 @@ const Optimizer = {
         crew.skill_data.forEach(rarity => {
           skillData[rarity.rarity] = rarity;
         });
+        var skillsRanked = [];
+        for (var skill in crew.base_skills) {
+          var skillArray = skill.split('_');
+          skillsRanked.push(skillArray[0]);
+        }
         skillData[crew.max_rarity] = {};
         skillData[crew.max_rarity].base_skills = crew.base_skills;
         let crewStats = {
@@ -3238,7 +3243,8 @@ const Optimizer = {
           chronsInvested: true,
           frozen: true,
           skillData: skillData,
-          collections: crew.collections,
+          skillsRanked: skillsRanked,
+          collections: crew.collections
         }
         Optimizer.rosterLibrary[crew.name] = crewStats;
         Optimizer.rosterArray.push(crewStats);
@@ -3251,6 +3257,12 @@ const Optimizer = {
         });
         skillData[crew.max_rarity] = {};
         skillData[crew.max_rarity].base_skills = crew.base_skills;
+
+        var skillsRanked = [];
+        for (var skill in crew.base_skills) {
+          var skillArray = skill.split('_');
+          skillsRanked.push(skillArray[0]);
+        }
 
         let fullyLeveled = false;
         let fullyEquipped = false;
@@ -3293,7 +3305,8 @@ const Optimizer = {
           chronsInvested: chronsInvested,
           frozen: false,
           skillData: skillData,
-          collections: crew.collections,
+          skillsRanked: skillsRanked,
+          collections: crew.collections
         }
         Optimizer.rosterLibrary[crew.name] = crewStats;
         Optimizer.rosterArray.push(crewStats);
@@ -3987,7 +4000,7 @@ const Optimizer = {
         addedEV: highestContributedEV,
         currentRarity: Optimizer.rosterLibrary[highestContributingTrainee].rarity,
         maxRarity: Optimizer.rosterLibrary[highestContributingTrainee].maxRarity,
-        skills: Optimizer.rosterLibrary[highestContributingTrainee].skillSet.signature.split('/'),
+        skills: Optimizer.rosterLibrary[highestContributingTrainee].skillsRanked,
         voyagesImproved: Optimizer.topCrewToTrain[highestContributingTrainee].voyagesImproved
       });
 
