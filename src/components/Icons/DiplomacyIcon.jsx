@@ -2,8 +2,8 @@ import React from 'react';
 
 const DiplomacyIcon = ({ color, position }) => {
   return (
-    <svg id="Layer_1" data-name="Layer 1" width="26" height="21" viewBox="0 0 67.58 101.25">
-      <g>
+    <svg id="Layer_1" data-name="Layer 1" width={29 + position} height="20" viewBox={`0 0 67.58 101.25`}>
+      <g transform={`translate(${position}, 0)`}>
         <path d="M728.49,280.11c-8.39,0-18.78-6.47-23.58-16.7,3.36.32,10.87,2.79,13.11,4.31-.48-1.84-.68-7.64.55-9.24C723.53,262,728.49,264.76,728.49,280.11Z" transform="translate(-699.7 -202.18)" fill={color} stroke="#000" />
         <path d="M750,289.27c-.72,0-6.68-.48-16.59,7.11l-2.56-1.91s5.84-5.12,8.88-5.2c-10.65.53-18.17-3.44-22.48-7.06,2.78,0,14.88-.57,16.31.79-.51-1.64-.46-7.83,0-12.48,9.69,5.3,9.42,13,9,16.5a22.1,22.1,0,0,1,7.45-1.25" transform="translate(-699.7 -202.18)" fill={color} stroke="#000" />
         <path d="M709.43,247.77c1.67-1.18,4.67-6.16,5.49-7.74,6.28,13.68.61,20.22-2.75,23-1.89-1.46-11.44-6.88-11.95-25.89C704.6,238.44,708.66,246.09,709.43,247.77Z" transform="translate(-699.7 -202.18)" fill={color} stroke="#000" />

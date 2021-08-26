@@ -4,7 +4,7 @@ const SaveImport =(props) => {
   const [saveData, setSaveData] = useState("");
 
   function handleClick() {
-    props.importData(saveData);
+    props.startProcessing(saveData);
   }
 
   return(

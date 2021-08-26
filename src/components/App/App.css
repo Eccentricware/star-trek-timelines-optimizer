@@ -51,6 +51,10 @@ Body {
   height: 20vh;
 }
 
+.loading-message {
+  color: red;
+}
+
 .update-date {
   position: sticky;
   bottom: 0px;

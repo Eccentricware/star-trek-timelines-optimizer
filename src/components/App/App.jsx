@@ -9,6 +9,24 @@ function App() {
   const [saveData, setSaveData] = useState(Optimizer);
   const [rankedCrewToTrain, setRankedCrewToTrain] = useState([]);
   const [rankedCrewToCite, setRankedCrewToCite] = useState([]);
+  const [mode, setMode] = useState('Awaiting Save File');
+  const [loadingMessage, setLoadingMessage] = useState('');
+
+  function startProcessing(saveData) {
+    var loadingMessages = [
+      'Keep your shirt on!',
+      'Don\'t get in a twist!',
+      'Hold on a second!',
+      'What am I, a computer?!',
+      'So many characters, so little time!'
+    ];
+    var message = loadingMessages[Math.floor(Math.random() * loadingMessages.length)];
+    setLoadingMessage(message);
+    setMode('loading');
+    setTimeout(() => {
+      importData(saveData);
+    }, 0)
+  }
 
   function importData(saveData) {
     let crewPotential = {};
@@ -43,12 +61,14 @@ function App() {
     console.log(Optimizer.rankedCrewToCite);
     setRankedCrewToTrain(Optimizer.rankedCrewToTrain);
     setRankedCrewToCite(Optimizer.rankedCrewToCite);
+    setMode('loaded');
   }
 
   return (
     <div className="App">
-      {rankedCrewToTrain.length === 0 ? <SaveImport label={saveData} importData={importData} optimizer={Optimizer} /> : null}
+      {rankedCrewToTrain.length === 0 ? <SaveImport label={saveData} importData={importData} startProcessing={startProcessing} optimizer={Optimizer} /> : null}
       {rankedCrewToTrain.length > 0 ? <CrewToTrainDisplay rankedCrewToTrain={rankedCrewToTrain}/> : null}
+      {mode === 'loading' ? <div className="loading-message">Loading: {loadingMessage}</div> : null}
       <div className="update-date">Last Game Roster Update: 8-20-2021</div>
     </div>
   );

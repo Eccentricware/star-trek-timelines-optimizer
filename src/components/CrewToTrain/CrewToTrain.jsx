@@ -12,34 +12,40 @@ import SecurityIcon from '../Icons/SecurityIcon.jsx';
 const CrewToTrain = ({crew, rank}) => {
   const icons = {
     command: {
-      primary: <CommandIcon color='gold'/>,
-      secondary: <CommandIcon color='silver'/>,
-      tertiary: <CommandIcon color='#b08d57'/>
+      primary: <CommandIcon color='gold'position={0}/>,
+      secondary: <CommandIcon color='silver'position={0}/>,
+      tertiary: <CommandIcon color='#b08d57'position={0}/>,
+      voyageSecondary: <CommandIcon color='silver' position={24} />
     },
     diplomacy: {
-      primary: <DiplomacyIcon color='gold' />,
-      secondary: <DiplomacyIcon color='silver' />,
-      tertiary: <DiplomacyIcon color='#b08d57' />
+      primary: <DiplomacyIcon color='gold' position={-6}/>,
+      secondary: <DiplomacyIcon color='silver' position={-6}/>,
+      tertiary: <DiplomacyIcon color='#b08d57' position={-6}/>,
+      voyageSecondary: <DiplomacyIcon color='silver' position={16} />
     },
     engineering: {
-      primary: <EngineeringIcon color='gold' />,
-      secondary: <EngineeringIcon color='silver' />,
-      tertiary: <EngineeringIcon color='#b08d57' />
+      primary: <EngineeringIcon color='gold' position={0}/>,
+      secondary: <EngineeringIcon color='silver' position={0}/>,
+      tertiary: <EngineeringIcon color='#b08d57' position={0}/>,
+      voyageSecondary: <EngineeringIcon color='silver' position={24} />
     },
     medicine: {
-      primary: <MedicineIcon color='gold' />,
-      secondary: <MedicineIcon color='silver' />,
-      tertiary: <MedicineIcon color='#b08d57' />
+      primary: <MedicineIcon color='gold' position={0}/>,
+      secondary: <MedicineIcon color='silver' position={0}/>,
+      tertiary: <MedicineIcon color='#b08d57' position={0}/>,
+      voyageSecondary: <MedicineIcon color='silver' position={24} />
     },
     science: {
-      primary: <ScienceIcon color='gold' />,
-      secondary: <ScienceIcon color='silver' />,
-      tertiary: <ScienceIcon color='#b08d57' />
+      primary: <ScienceIcon color='gold' position={0}/>,
+      secondary: <ScienceIcon color='silver' position={0}/>,
+      tertiary: <ScienceIcon color='#b08d57' position={0}/>,
+      voyageSecondary: <ScienceIcon color='silver' position={24} />
     },
     security: {
-      primary: <SecurityIcon color='gold' position={2} />,
-      secondary: <SecurityIcon color='silver' position={2} />,
-      tertiary: <SecurityIcon color='#b08d57' position={2} />
+      primary: <SecurityIcon color='gold' position={0}/>,
+      secondary: <SecurityIcon color='silver' position={0}/>,
+      tertiary: <SecurityIcon color='#b08d57' position={0}/>,
+      voyageSecondary: <SecurityIcon color='silver' position={24} />
     },
   }
   return (
@@ -50,13 +56,20 @@ const CrewToTrain = ({crew, rank}) => {
         maxRarity={crew.maxRarity}/>
       </td>
       <td>{Math.ceil(crew.addedEV)}</td>
-      <td>
+      <td className="skill-icons">
         {icons[crew.skills[0]].primary}
         {crew.skills[1] ? icons[crew.skills[1]].secondary : null}
         {crew.skills[2] ? icons[crew.skills[2]].tertiary : null}
       </td>
       <td className="voyages-improved">
-        {crew.voyagesImproved.join(', ')}
+        {crew.voyagesImproved.map(voyagePair => {
+          return(
+            <svg width="50" height="22" viewBox="0 0 50 22" padding="0">
+              {icons[voyagePair.split('/')[1]].voyageSecondary}
+              {icons[voyagePair.split('/')[0]].primary}
+            </svg>
+          )
+        })}
       </td>
     </tr>
   )
