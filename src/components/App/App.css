@@ -60,3 +60,7 @@ Body {
   bottom: 0px;
   left: 0px;
 }
+
+.voyages-improved {
+  border-left: solid gray 1px;
+}
