@@ -61,7 +61,7 @@ const BeholdAdviser = (props) => {
           </tr>
           <tr>
             <td className="category"></td>
-            <td>{props.beholdCrew.slot1 ? props.beholdCrew.slot1.name : 'Select 1st Candidate'}</td>
+            <td>{props.beholdCrew.slot1 !== undefined ? props.beholdCrew.slot1.name : 'Select 1st Candidate'}</td>
             <td>{props.beholdCrew.slot2 ? props.beholdCrew.slot2.name : 'Select 2nd Candidate'}</td>
             <td>{props.beholdCrew.slot3 ? props.beholdCrew.slot3.name : 'Select 3rd Candidate'}</td>
           </tr>

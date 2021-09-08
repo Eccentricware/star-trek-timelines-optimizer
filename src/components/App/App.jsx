@@ -7,13 +7,15 @@ import BeholdAdviser from '../BeholdAdviser/BeholdAdviser.jsx';
 import CrewToTrainDisplay from '../CrewToTrainDisplay/CrewToTrainDisplay.jsx';
 import DataCoreCrew from '../../util/DataCoreCrew';
 
-function App() {
+const App = (props) => {
   const [saveData, setSaveData] = useState(Optimizer);
   const [rankedCrewToTrain, setRankedCrewToTrain] = useState([]);
   const [rankedCrewToCite, setRankedCrewToCite] = useState([]);
   const [mode, setMode] = useState('waiting');
   const [loadingMessage, setLoadingMessage] = useState('');
-  const [beholdCrew, setBeholdCrew] = useState(Optimizer.beholdCrew)
+  const [beholdCrew, setBeholdCrew] = useState(Optimizer.beholdCrew);
+
+
 
   function startProcessing(saveData) {
     var loadingMessages = [
@@ -72,6 +74,10 @@ function App() {
     Optimizer.setBeholdSlot(slot, name);
     console.log(Optimizer.beholdCrew.slot1);
     setBeholdCrew(Optimizer.beholdCrew);
+    setMode('flicker');
+    setTimeout(() => {
+      setMode('behond');
+    }, 0);
   }
 
   return (
@@ -89,7 +95,7 @@ function App() {
       {mode === 'waiting' ? <SaveImport label={saveData} importData={importData} startProcessing={startProcessing} optimizer={Optimizer} /> : null}
       {mode === 'training' ? <CrewToTrainDisplay rankedCrewToTrain={rankedCrewToTrain}/> : null}
       {mode === 'loading' ? <div className="loading-message">Loading: {loadingMessage}</div> : null}
-      <div className="update-date">Last Game Roster Update: 8-26-2021</div>
+      <div className="update-date">Last Game Roster Update: 9-8-2021</div>
     </div>
   );
 }
