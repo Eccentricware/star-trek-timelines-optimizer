@@ -1,3 +1,5 @@
+import DataCoreCrew from './DataCoreCrew.js';
+
 const Optimizer = {
   saveFile: {},
   rosterLibrary: {},
@@ -2944,196 +2946,6 @@ const Optimizer = {
       }
     }
   },
-  topCrewToTrain: {},
-  topCrewToCite: {},
-  rankedCrewToTrain: [],
-  rankedCrewToCite: [],
-  bestPossibleCrew: {
-    gauntlet: {
-      "command/diplomacy": {
-        name: "",
-        gauntletPairingEV: 0
-      },
-      "command/engineering": {
-        name: "",
-        gauntletPairingEV: 0
-      },
-      "command/medicine": {
-        name: "",
-        gauntletPairingEV: 0
-      },
-      "command/science": {
-        name: "",
-        gauntletPairingEV: 0
-      },
-      "command/security": {
-        name: "",
-        gauntletPairingEV: 0
-      },
-      "diplomacy/engineering": {
-        name: "",
-        gauntletPairingEV: 0
-      },
-      "diplomacy/medicine": {
-        name: "",
-        gauntletPairingEV: 0
-      },
-      "diplomacy/science": {
-        name: "",
-        gauntletPairingEV: 0
-      },
-      "diplomacy/security": {
-        name: "",
-        gauntletPairingEV: 0
-      },
-      "engineering/medicine": {
-        name: "",
-        gauntletPairingEV: 0
-      },
-      "engineering/science": {
-        name: "",
-        gauntletPairingEV: 0
-      },
-      "engineering/security": {
-        name: "",
-        gauntletPairingEV: 0
-      },
-      "medicine/science": {
-        name: "",
-        gauntletPairingEV: 0
-      },
-      "medicine/security": {
-        name: "",
-        gauntletPairingEV: 0
-      },
-      "science/security": {
-        name: "",
-        gauntletPairingEV: 0
-      }
-    },
-    voyages: {
-      "command/diplomacy": {
-        name: "",
-        voyagePairingEV: 0
-      },
-      "command/engineering": {
-        name: "",
-        voyagePairingEV: 0
-      },
-      "command/medicine": {
-        name: "",
-        voyagePairingEV: 0
-      },
-      "command/science": {
-        name: "",
-        voyagePairingEV: 0
-      },
-      "command/security": {
-        name: "",
-        voyagePairingEV: 0
-      },
-      "diplomacy/command": {
-        name: "",
-        voyagePairingEV: 0
-      },
-      "diplomacy/engineering": {
-        name: "",
-        voyagePairingEV: 0
-      },
-      "diplomacy/medicine": {
-        name: "",
-        voyagePairingEV: 0
-      },
-      "diplomacy/science": {
-        name: "",
-        voyagePairingEV: 0
-      },
-      "diplomacy/security": {
-        name: "",
-        voyagePairingEV: 0
-      },
-      "engineering/command": {
-        name: "",
-        voyagePairingEV: 0
-      },
-      "engineering/diplomacy": {
-        name: "",
-        voyagePairingEV: 0
-      },
-      "engineering/medicine": {
-        name: "",
-        voyagePairingEV: 0
-      },
-      "engineering/science": {
-        name: "",
-        voyagePairingEV: 0
-      },
-      "engineering/security": {
-        name: "",
-        voyagePairingEV: 0
-      },
-      "medicine/command": {
-        name: "",
-        voyagePairingEV: 0
-      },
-      "medicine/diplomacy": {
-        name: "",
-        voyagePairingEV: 0
-      },
-      "medicine/engineering": {
-        name: "",
-        voyagePairingEV: 0
-      },
-      "medicine/science": {
-        name: "",
-        voyagePairingEV: 0
-      },
-      "medicine/security": {
-        name: "",
-        voyagePairingEV: 0
-      },
-      "science/command": {
-        name: "",
-        voyagePairingEV: 0
-      },
-      "science/diplomacy": {
-        name: "",
-        voyagePairingEV: 0
-      },
-      "science/engineering": {
-        name: "",
-        voyagePairingEV: 0
-      },
-      "science/medicine": {
-        name: "",
-        voyagePairingEV: 0
-      },
-      "science/security": {
-        name: "",
-        voyagePairingEV: 0
-      },
-      "security/command": {
-        name: "",
-        voyagePairingEV: 0
-      },
-      "security/diplomacy": {
-        name: "",
-        voyagePairingEV: 0
-      },
-      "security/engineering": {
-        name: "",
-        voyagePairingEV: 0
-      },
-      "security/medicine": {
-        name: "",
-        voyagePairingEV: 0
-      },
-      "security/science": {
-        name: "",
-        voyagePairingEV: 0
-      }
-    }
-  },
   findBestRankings(dataCoreCrew) {
     dataCoreCrew.forEach((crew, i) => {
       //Finding best crew possible
@@ -3154,13 +2966,13 @@ const Optimizer = {
             let gauntletPairingEV = 0
             for (var skill in crew.base_skills) {
               if (skill == primarySkill) {
-                voyagePairingEV += (crew.base_skills[skill].core + (crew.base_skills[skill].range_min + crew.base_skills[skill].range_max)/2) * 0.35 ;
-                gauntletPairingEV += (crew.base_skills[skill].range_min + crew.base_skills[skill].range_max)/2
+                voyagePairingEV += (crew.base_skills[skill].core + (crew.base_skills[skill].range_min + crew.base_skills[skill].range_max) / 2) * 0.35;
+                gauntletPairingEV += (crew.base_skills[skill].range_min + crew.base_skills[skill].range_max) / 2
               } else if (skill == secondarySkill) {
-                voyagePairingEV += (crew.base_skills[skill].core + (crew.base_skills[skill].range_min + crew.base_skills[skill].range_max)/2) * 0.25;
-                gauntletPairingEV += (crew.base_skills[skill].range_min + crew.base_skills[skill].range_max)/2
+                voyagePairingEV += (crew.base_skills[skill].core + (crew.base_skills[skill].range_min + crew.base_skills[skill].range_max) / 2) * 0.25;
+                gauntletPairingEV += (crew.base_skills[skill].range_min + crew.base_skills[skill].range_max) / 2
               } else {
-                voyagePairingEV += (crew.base_skills[skill].core + (crew.base_skills[skill].range_min + crew.base_skills[skill].range_max)/2) * 0.1;
+                voyagePairingEV += (crew.base_skills[skill].core + (crew.base_skills[skill].range_min + crew.base_skills[skill].range_max) / 2) * 0.1;
               }
             }
 
@@ -3204,7 +3016,7 @@ const Optimizer = {
       }
     });
 
-    //Adding froze crew's IDs to frozenCrewIDArray
+    //Adding frozen crew's IDs to frozenCrewIDArray
     saveData.player.character.stored_immortals.forEach(crew => {
       if (!frozenCrewIDArray.includes(crew.id)) {
         frozenCrewIDArray.push(crew.id);
@@ -3213,7 +3025,9 @@ const Optimizer = {
 
     //Populates relevant data for acquired crew
     //Data processed differently if immortalized or not
-    dataCoreCrew.forEach(crew => {
+    dataCoreCrew.forEach((crew, index) => {
+      // name to index processing for behold access
+      Optimizer.nameToIndex[crew.name] = index;
 
       //Processing frozen crew
       if (frozenCrewIDArray.includes(crew.archetype_id)) {
@@ -3327,16 +3141,16 @@ const Optimizer = {
 
       for (let skillIndex = 0; skillIndex < crew.skillSet.skillArray.length; skillIndex++) {
         crew.skillSet.signature += crew.skillSet.skillArray[skillIndex].slice(0, crew.skillSet.skillArray[skillIndex].indexOf('_'));
-          if (skillIndex != crew.skillSet.skillArray.length - 1) {
-            crew.skillSet.signature += "/";
-          }
+        if (skillIndex != crew.skillSet.skillArray.length - 1) {
+          crew.skillSet.signature += "/";
+        }
       }
       let voyageSkills = ["command_skill", "diplomacy_skill", "engineering_skill", "security_skill", "medicine_skill", "science_skill"];
       for (var rarity in crew.skillData) {
         let rarityLevel = crew.skillData[rarity];
         for (var skill in rarityLevel.base_skills) {
           let assessedSkill = rarityLevel.base_skills[skill];
-          crew.skillData[rarity].base_skills[skill].ev = assessedSkill.core + (assessedSkill.range_min + assessedSkill.range_max)/2;
+          crew.skillData[rarity].base_skills[skill].ev = assessedSkill.core + (assessedSkill.range_min + assessedSkill.range_max) / 2;
         }
         rarityLevel.voyageMetrics = {};
         voyageSkills.forEach(primarySkill => {
@@ -3564,9 +3378,9 @@ const Optimizer = {
       }
       for (var skill in relevantSkillCounts) {
         if (relevantSkillCounts[skill].length < leastKnownSkillCount && leastSkillsPerCrew.includes(relevantSkillCounts[skill][0])) {
-            //&& relevantSkillCounts[skill].length > 0
-            //&& Optimizer.topVoyageCrews.currentBest[skillPairing].seatAssignments[skill].length < 2
-            //&& oneSkillCrew.includes(relevantSkillCounts[skill][0])) {
+          //&& relevantSkillCounts[skill].length > 0
+          //&& Optimizer.topVoyageCrews.currentBest[skillPairing].seatAssignments[skill].length < 2
+          //&& oneSkillCrew.includes(relevantSkillCounts[skill][0])) {
           leastKnownSkill = skill;
           leastKnownSkillCount = relevantSkillCounts[skill].length;
         }
@@ -3654,7 +3468,7 @@ const Optimizer = {
             Optimizer.rosterLibrary[crewName].skillData[Optimizer.rosterLibrary[crewName].rarity].base_skills[skill].ev;
         };
         Optimizer.topVoyageCrews.currentBest[skillPairing].totalEV +=
-        Optimizer.rosterLibrary[crewName].skillData[Optimizer.rosterLibrary[crewName].rarity].voyageMetrics[skillPairing];
+          Optimizer.rosterLibrary[crewName].skillData[Optimizer.rosterLibrary[crewName].rarity].voyageMetrics[skillPairing];
       });
       /*
       console.log(`Seated array at the end of the ${skillPairing} voyage is somehow:`);
@@ -3734,7 +3548,7 @@ const Optimizer = {
             Optimizer.rosterLibrary[crewName].skillData[Optimizer.rosterLibrary[crewName].rarity].base_skills[skill].ev;
         };
         Optimizer.topVoyageCrews.rarityBest[skillPairing].totalEV +=
-        Optimizer.rosterLibrary[crewName].skillData[Optimizer.rosterLibrary[crewName].rarity].voyageMetrics[skillPairing];
+          Optimizer.rosterLibrary[crewName].skillData[Optimizer.rosterLibrary[crewName].rarity].voyageMetrics[skillPairing];
       });
       /*
       let seatedCrew = [];
@@ -3871,6 +3685,197 @@ const Optimizer = {
       //console.log(`Best ${skillPairing} crew for current rarity found`);
     });
   },
+  topCrewToTrain: {},
+  topCrewToCite: {},
+  rankedCrewToTrain: [],
+  rankedCrewToCite: [],
+  bestPossibleCrew: {
+    gauntlet: {
+      "command/diplomacy": {
+        name: "",
+        gauntletPairingEV: 0
+      },
+      "command/engineering": {
+        name: "",
+        gauntletPairingEV: 0
+      },
+      "command/medicine": {
+        name: "",
+        gauntletPairingEV: 0
+      },
+      "command/science": {
+        name: "",
+        gauntletPairingEV: 0
+      },
+      "command/security": {
+        name: "",
+        gauntletPairingEV: 0
+      },
+      "diplomacy/engineering": {
+        name: "",
+        gauntletPairingEV: 0
+      },
+      "diplomacy/medicine": {
+        name: "",
+        gauntletPairingEV: 0
+      },
+      "diplomacy/science": {
+        name: "",
+        gauntletPairingEV: 0
+      },
+      "diplomacy/security": {
+        name: "",
+        gauntletPairingEV: 0
+      },
+      "engineering/medicine": {
+        name: "",
+        gauntletPairingEV: 0
+      },
+      "engineering/science": {
+        name: "",
+        gauntletPairingEV: 0
+      },
+      "engineering/security": {
+        name: "",
+        gauntletPairingEV: 0
+      },
+      "medicine/science": {
+        name: "",
+        gauntletPairingEV: 0
+      },
+      "medicine/security": {
+        name: "",
+        gauntletPairingEV: 0
+      },
+      "science/security": {
+        name: "",
+        gauntletPairingEV: 0
+      }
+    },
+    voyages: {
+      "command/diplomacy": {
+        name: "",
+        voyagePairingEV: 0
+      },
+      "command/engineering": {
+        name: "",
+        voyagePairingEV: 0
+      },
+      "command/medicine": {
+        name: "",
+        voyagePairingEV: 0
+      },
+      "command/science": {
+        name: "",
+        voyagePairingEV: 0
+      },
+      "command/security": {
+        name: "",
+        voyagePairingEV: 0
+      },
+      "diplomacy/command": {
+        name: "",
+        voyagePairingEV: 0
+      },
+      "diplomacy/engineering": {
+        name: "",
+        voyagePairingEV: 0
+      },
+      "diplomacy/medicine": {
+        name: "",
+        voyagePairingEV: 0
+      },
+      "diplomacy/science": {
+        name: "",
+        voyagePairingEV: 0
+      },
+      "diplomacy/security": {
+        name: "",
+        voyagePairingEV: 0
+      },
+      "engineering/command": {
+        name: "",
+        voyagePairingEV: 0
+      },
+      "engineering/diplomacy": {
+        name: "",
+        voyagePairingEV: 0
+      },
+      "engineering/medicine": {
+        name: "",
+        voyagePairingEV: 0
+      },
+      "engineering/science": {
+        name: "",
+        voyagePairingEV: 0
+      },
+      "engineering/security": {
+        name: "",
+        voyagePairingEV: 0
+      },
+      "medicine/command": {
+        name: "",
+        voyagePairingEV: 0
+      },
+      "medicine/diplomacy": {
+        name: "",
+        voyagePairingEV: 0
+      },
+      "medicine/engineering": {
+        name: "",
+        voyagePairingEV: 0
+      },
+      "medicine/science": {
+        name: "",
+        voyagePairingEV: 0
+      },
+      "medicine/security": {
+        name: "",
+        voyagePairingEV: 0
+      },
+      "science/command": {
+        name: "",
+        voyagePairingEV: 0
+      },
+      "science/diplomacy": {
+        name: "",
+        voyagePairingEV: 0
+      },
+      "science/engineering": {
+        name: "",
+        voyagePairingEV: 0
+      },
+      "science/medicine": {
+        name: "",
+        voyagePairingEV: 0
+      },
+      "science/security": {
+        name: "",
+        voyagePairingEV: 0
+      },
+      "security/command": {
+        name: "",
+        voyagePairingEV: 0
+      },
+      "security/diplomacy": {
+        name: "",
+        voyagePairingEV: 0
+      },
+      "security/engineering": {
+        name: "",
+        voyagePairingEV: 0
+      },
+      "security/medicine": {
+        name: "",
+        voyagePairingEV: 0
+      },
+      "security/science": {
+        name: "",
+        voyagePairingEV: 0
+      }
+    }
+  },
+
   findCrewToTrain() {
     Optimizer.skillPairingsArray.forEach(skillPairing => {
       Optimizer.topVoyageCrews.rarityBest[skillPairing].crew.forEach(leveledCrew => {
@@ -4426,6 +4431,49 @@ const Optimizer = {
       sortingArray.splice(sortingArray.indexOf(highestContributingTrainee), 1);
     }
   },
+  beholdCrew: {
+    slot1: undefined,
+    slot2: undefined,
+    slot3: undefined
+  },
+  nameToIndex: {},
+  setBeholdSlot(slot, crewName) {
+    var crew = DataCoreCrew[this.nameToIndex[crewName]];
+    if (this.rosterLibrary[crew.name]) {
+      this.beholdCrew[slot] = this.rosterLibrary[crew.name];
+    } else {
+      let skillData = {};
+      crew.skill_data.forEach(rarity => {
+        skillData[rarity.rarity] = rarity;
+      });
+      var skillsRanked = [];
+      for (var skill in crew.base_skills) {
+        var skillArray = skill.split('_');
+        skillsRanked.push(skillArray[0]);
+      }
+      skillData[crew.max_rarity] = {};
+      skillData[crew.max_rarity].base_skills = crew.base_skills;
+      let crewStats = {
+        id: crew.archetype_id,
+        name: crew.name,
+        shortName: crew.short_name,
+        rarity: 0,
+        maxRarity: crew.max_rarity,
+        immortalityStatus: {
+          fullyEquipped: false,
+          fullyLeveled: false,
+          fullyFused: false,
+          immortalized: false
+        },
+        chronsInvested: false,
+        frozen: false,
+        skillData: skillData,
+        skillsRanked: skillsRanked,
+        collections: crew.collections
+      }
+      this.beholdCrew[slot] = crewStats;
+    }
+  }
 };
 
 export default Optimizer;
