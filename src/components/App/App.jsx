@@ -72,9 +72,9 @@ const App = (props) => {
   const processCandidate = (slot, name) => {
     console.log(`Candidate ${slot} is ${name} and has an index of ${Optimizer.nameToIndex[name]}`);
     Optimizer.setBeholdSlot(slot, name);
-    console.log(Optimizer.beholdCrew.slot1);
+    console.log(Optimizer.beholdCrew[slot]);
+    Optimizer.findBeholdCrewPotential(slot);
     setBeholdCrew(Optimizer.beholdCrew);
-    setMode('flicker');
     setTimeout(() => {
       setMode('behold');
     }, 0);

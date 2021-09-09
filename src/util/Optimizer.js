@@ -20,7 +20,6 @@ const Optimizer = {
     "engineering/medicine",
     "engineering/science",
     "engineering/security",
-    //"expectedVoyage",
     "medicine/command",
     "medicine/diplomacy",
     "medicine/engineering",
@@ -3178,8 +3177,6 @@ const Optimizer = {
         }
         crew.skillData[rarity].voyageMetrics.expectedVoyage = expectedVoyage / 30;
       }
-
-
     });
 
     console.log("Crew Library:");
@@ -3875,7 +3872,6 @@ const Optimizer = {
       }
     }
   },
-
   findCrewToTrain() {
     Optimizer.skillPairingsArray.forEach(skillPairing => {
       Optimizer.topVoyageCrews.rarityBest[skillPairing].crew.forEach(leveledCrew => {
@@ -4252,6 +4248,30 @@ const Optimizer = {
     }
     return currentRarityWithCandidateRankingArray;
   },
+  createFullyCitedRankingArrayWithCandidate(candidateName, skillPairing) {
+    let candidate = Optimizer.rosterLibrary[candidateName];
+    let fullyCitedRankingArray = Optimizer.voyageSkillRankings.fullyCited[skillPairing];
+    if (fullyCitedRankingArray.includes(candidateName)) {
+      return fullyCitedRankingArray;
+    }
+    let fullyCitedWithCandidateRankingArray = [];
+    let fullyCitedIndex = 0;
+    let candidatePlaced = false;
+    while (fullyCitedIndex < fullyCitedRankingArray.length) {
+      let crew = Optimizer.rosterLibrary[fullyCitedRankingArray[fullyCitedIndex]];
+      if (candidateName === crew.name) {
+        fullyCitedWithCandidateRankingArray.push(candidateName);
+        fullyCitedIndex++;
+      } else if (candidate.skillData[candidate.maxRarity].voyageMetrics[skillPairing] > crew.skillData[crew.maxRarity].voyageMetrics[skillPairing] && !candidatePlaced) {
+        fullyCitedWithCandidateRankingArray.push(candidateName);
+        candidatePlaced = true;
+      } else {
+        fullyCitedWithCandidateRankingArray.push(crew.name);
+        fullyCitedIndex++;
+      }
+    }
+    return fullyCitedWithCandidateRankingArray;
+  },
   createRankingArrayWithoutCandidate(candidateName, skillPairing) {
     let candidate = Optimizer.rosterLibrary[candidateName];
     let currentRarityRankingArray = Optimizer.voyageSkillRankings.currentRarity[skillPairing];
@@ -4346,6 +4366,14 @@ const Optimizer = {
     });
     return totalVoyageEV;
   },
+  findEVofVoyageCrewAtMaxRarity(voyageCrew, skillPairing) {
+    let totalVoyageEV = 0;
+    voyageCrew.forEach(crewName => {
+      var maxRarity = Optimizer.rosterLibrary[crewName].maxRarity
+      totalVoyageEV += Optimizer.rosterLibrary[crewName].skillData[maxRarity].voyageMetrics[skillPairing];
+    });
+    return totalVoyageEV;
+  },
   findEVofVoyageCrewWithoutCandidate(voyageCrew, skillPairing) {
     let totalVoyageEV = 0;
     voyageCrew.forEach(crewName => {
@@ -4408,6 +4436,53 @@ const Optimizer = {
       });
     }
   },
+  findBeholdCrewPotential(slot) {
+    console.log('INTERCEPTIONS!!!')
+    var crew = Optimizer.beholdCrew[slot];
+    crew.rarityPotential = {
+      fullyCited: {
+        totalEV: 0,
+        voyagesImproved: []
+      }
+    };
+    for (var rarity in crew.skillData) {
+      // if (rarity <= crew.rarity) {
+      //   crew.rarityPotential[rarity] = 'Already Acquired';
+      // } else
+      {
+        crew.rarityPotential[rarity] = {
+          addedEV: 0,
+          voyageEVs: {},
+          voyagesImproved: []
+        };
+        Optimizer.skillPairingsArray.forEach(skillPairing => {
+          var potentialSkillRankings = Optimizer.createCandidateRarityRankingArray(crew.name, rarity, skillPairing);
+          var potentialVoyageCrew = Optimizer.findBestCrewWithRarityDependentCandidate(potentialSkillRankings, crew.name);
+          var potentialCrewEV = Optimizer.findEVofVoyageCrewWithRarityDependentCandidate(
+            potentialVoyageCrew, skillPairing, crew.name, rarity
+          );
+          crew.rarityPotential[rarity].voyageEVs[skillPairing] = potentialCrewEV - Optimizer.topVoyageCrews.currentBest[skillPairing].totalEV;
+          if (crew.rarityPotential[rarity].voyageEVs[skillPairing] > 0) {
+            crew.rarityPotential[rarity].voyagesImproved.push(skillPairing);
+            crew.rarityPotential[rarity].addedEV += crew.rarityPotential[rarity].voyageEVs[skillPairing];
+          }
+          if (Optimizer.topCrewToCite[crew.name]) {
+            crew.rarityPotential.fullyCited.totalEV = Optimizer.topCrewToCite[crew.name].totalEVContribution;
+            crew.rarityPotential.fullyCited.voyagesImproved = Optimizer.topCrewToCite[crew.name].voyagesImproved;
+          } else if (Number(rarity) === crew.maxRarity) {
+            var potentialFullyCitedRankings = Optimizer.createFullyCitedRankingArrayWithCandidate(crew.name, skillPairing);
+            var potentialFullyCitedCrew = Optimizer.findBestCrewWithRarityDependentCandidate(potentialFullyCitedRankings, crew.name);
+            var potentialFullyCitedEV = Optimizer.findEVofVoyageCrewAtMaxRarity(potentialFullyCitedCrew, skillPairing);
+            var potentialFullyCitedAddedEV = potentialFullyCitedEV - Optimizer.topVoyageCrews.citedBest[skillPairing].totalEV;
+            if (potentialFullyCitedAddedEV > 0) {
+              crew.rarityPotential.fullyCited.totalEV += potentialFullyCitedAddedEV;
+              crew.rarityPotential.fullyCited.voyagesImproved.push(skillPairing);
+            }
+          }
+        });
+      }
+    }
+  },
   sortCrewToCite() {
     let sortingArray = [];
     for (let crewName in Optimizer.topCrewToCite) {
@@ -4439,8 +4514,9 @@ const Optimizer = {
   nameToIndex: {},
   setBeholdSlot(slot, crewName) {
     var crew = DataCoreCrew[this.nameToIndex[crewName]];
-    if (this.rosterLibrary[crew.name]) {
+    if (this.rosterLibrary[crewName]) {
       this.beholdCrew[slot] = this.rosterLibrary[crew.name];
+      this.beholdCrew[slot].beholdRarity = this.beholdCrew[slot].rarity + 1;
     } else {
       let skillData = {};
       crew.skill_data.forEach(rarity => {
@@ -4453,11 +4529,12 @@ const Optimizer = {
       }
       skillData[crew.max_rarity] = {};
       skillData[crew.max_rarity].base_skills = crew.base_skills;
-      let crewStats = {
+      let newCrew = {
         id: crew.archetype_id,
         name: crew.name,
         shortName: crew.short_name,
         rarity: 0,
+        beholdRarity: 1,
         maxRarity: crew.max_rarity,
         immortalityStatus: {
           fullyEquipped: false,
@@ -4470,8 +4547,60 @@ const Optimizer = {
         skillData: skillData,
         skillsRanked: skillsRanked,
         collections: crew.collections
+      };
+
+      newCrew.skillSet = {
+        skillArray: [],
+        signature: ''
+      };
+      for (var skill in newCrew.skillData[1].base_skills) {
+        if (!newCrew.skillSet.skillArray.includes(skill) && skill != "rarity") {
+          newCrew.skillSet.skillArray.push(skill);
+        }
       }
-      this.beholdCrew[slot] = crewStats;
+      newCrew.skillSet.skillArray.sort();
+
+      for (let skillIndex = 0; skillIndex < newCrew.skillSet.skillArray.length; skillIndex++) {
+        newCrew.skillSet.signature += newCrew.skillSet.skillArray[skillIndex].slice(0, newCrew.skillSet.skillArray[skillIndex].indexOf('_'));
+        if (skillIndex != newCrew.skillSet.skillArray.length - 1) {
+          newCrew.skillSet.signature += "/";
+        }
+      }
+      let voyageSkills = ["command_skill", "diplomacy_skill", "engineering_skill", "security_skill", "medicine_skill", "science_skill"];
+      for (var rarity in newCrew.skillData) {
+        let rarityLevel = newCrew.skillData[rarity];
+        for (var skill in rarityLevel.base_skills) {
+          let assessedSkill = rarityLevel.base_skills[skill];
+          newCrew.skillData[rarity].base_skills[skill].ev = assessedSkill.core + (assessedSkill.range_min + assessedSkill.range_max) / 2;
+        }
+        rarityLevel.voyageMetrics = {};
+        voyageSkills.forEach(primarySkill => {
+          voyageSkills.forEach(secondarySkill => {
+            if (primarySkill !== secondarySkill) {
+              let skillPairing = `${primarySkill.slice(0, primarySkill.indexOf('_'))}/${secondarySkill.slice(0, secondarySkill.indexOf('_'))}`;
+              let voyageComboRating = 0;
+              for (var skill in rarityLevel.base_skills) {
+                let assessedSkill = rarityLevel.base_skills[skill];
+                if (skill === primarySkill) {
+                  voyageComboRating += assessedSkill.ev * 0.35;
+                } else if (skill === secondarySkill) {
+                  voyageComboRating += assessedSkill.ev * 0.25;
+                } else {
+                  voyageComboRating += assessedSkill.ev * 0.1;
+                }
+                newCrew.skillData[rarity].voyageMetrics[skillPairing] = voyageComboRating;
+              }
+            }
+          });
+        });
+        let expectedVoyage = 0;
+        for (var skillPairing in newCrew.skillData[rarity].voyageMetrics) {
+          expectedVoyage += newCrew.skillData[rarity].voyageMetrics[skillPairing];
+        }
+        newCrew.skillData[rarity].voyageMetrics.expectedVoyage = expectedVoyage / 30;
+      }
+      this.beholdCrew[slot] = newCrew;
+      this.rosterLibrary[crewName] = newCrew;
     }
   }
 };
