@@ -76,7 +76,7 @@ const App = (props) => {
     setBeholdCrew(Optimizer.beholdCrew);
     setMode('flicker');
     setTimeout(() => {
-      setMode('behond');
+      setMode('behold');
     }, 0);
   }
 
