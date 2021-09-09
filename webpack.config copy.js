@@ -1,14 +1,16 @@
 const path = require("path");
 const webpack = require("webpack");
 
+const SRC_DIR = path.join(__dirname, 'src');
+
 module.exports = {
-  entry: "./src/index.js",
+  entry: path.join(SRC_DIR, 'index.js'),
   mode: "development",
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/,
-        exclude: /(node_modules|bower_components)/,
+        exclude: /node_modules/,
         loader: "babel-loader",
         options: { presets: ["@babel/env", "@babel/preset-react"] }
       },
@@ -20,7 +22,7 @@ module.exports = {
   },
   resolve: { extensions: ["*", ".js", ".jsx", ".png"] },
   output: {
-    path: path.resolve(__dirname, "dist/"),
+    path: path.resolve(__dirname, "public/"),
     publicPath: "/dist/",
     filename: "bundle.js"
   },
