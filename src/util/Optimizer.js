@@ -4440,10 +4440,10 @@ const Optimizer = {
     console.log('INTERCEPTIONS!!!')
     var crew = Optimizer.beholdCrew[slot];
     crew.rarityPotential = {
-      fullyCited: {
-        totalEV: 0,
-        voyagesImproved: []
-      }
+      // fullyCited: {
+      //   totalEV: 0,
+      //   voyagesImproved: []
+      // }
     };
     for (var rarity in crew.skillData) {
       // if (rarity <= crew.rarity) {
@@ -4469,16 +4469,17 @@ const Optimizer = {
           if (Optimizer.topCrewToCite[crew.name]) {
             crew.rarityPotential.fullyCited.totalEV = Optimizer.topCrewToCite[crew.name].totalEVContribution;
             crew.rarityPotential.fullyCited.voyagesImproved = Optimizer.topCrewToCite[crew.name].voyagesImproved;
-          } else if (Number(rarity) === crew.maxRarity) {
-            var potentialFullyCitedRankings = Optimizer.createFullyCitedRankingArrayWithCandidate(crew.name, skillPairing);
-            var potentialFullyCitedCrew = Optimizer.findBestCrewWithRarityDependentCandidate(potentialFullyCitedRankings, crew.name);
-            var potentialFullyCitedEV = Optimizer.findEVofVoyageCrewAtMaxRarity(potentialFullyCitedCrew, skillPairing);
-            var potentialFullyCitedAddedEV = potentialFullyCitedEV - Optimizer.topVoyageCrews.citedBest[skillPairing].totalEV;
-            if (potentialFullyCitedAddedEV > 0) {
-              crew.rarityPotential.fullyCited.totalEV += potentialFullyCitedAddedEV;
-              crew.rarityPotential.fullyCited.voyagesImproved.push(skillPairing);
-            }
           }
+          // else if (Number(rarity) === crew.maxRarity) {
+          //   var potentialFullyCitedRankings = Optimizer.createFullyCitedRankingArrayWithCandidate(crew.name, skillPairing);
+          //   var potentialFullyCitedCrew = Optimizer.findBestCrewWithRarityDependentCandidate(potentialFullyCitedRankings, crew.name);
+          //   var potentialFullyCitedEV = Optimizer.findEVofVoyageCrewAtMaxRarity(potentialFullyCitedCrew, skillPairing);
+          //   var potentialFullyCitedAddedEV = potentialFullyCitedEV - Optimizer.topVoyageCrews.citedBest[skillPairing].totalEV;
+          //   if (potentialFullyCitedAddedEV > 0) {
+          //     crew.rarityPotential.fullyCited.totalEV += potentialFullyCitedAddedEV;
+          //     crew.rarityPotential.fullyCited.voyagesImproved.push(skillPairing);
+          //   }
+          // }
         });
       }
     }

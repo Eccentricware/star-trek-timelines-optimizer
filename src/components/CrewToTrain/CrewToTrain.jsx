@@ -13,9 +13,9 @@ const CrewToTrain = ({crew, rank}) => {
   const icons = {
     command: {
       primary: <CommandIcon color='gold'position={0}/>,
-      secondary: <CommandIcon color='silver'position={0}/>,
-      tertiary: <CommandIcon color='#b08d57'position={0}/>,
-      voyageSecondary: <CommandIcon color='silver' position={24} />
+      secondary: <CommandIcon color='silver'position={6}/>,
+      tertiary: <CommandIcon color='#b08d57'position={6}/>,
+      voyageSecondary: <CommandIcon color='silver' position={16} />
     },
     diplomacy: {
       primary: <DiplomacyIcon color='gold' position={-6}/>,
