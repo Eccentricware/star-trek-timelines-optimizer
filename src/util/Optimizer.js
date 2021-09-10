@@ -4466,10 +4466,10 @@ const Optimizer = {
             crew.rarityPotential[rarity].voyagesImproved.push(skillPairing);
             crew.rarityPotential[rarity].addedEV += crew.rarityPotential[rarity].voyageEVs[skillPairing];
           }
-          if (Optimizer.topCrewToCite[crew.name]) {
-            crew.rarityPotential.fullyCited.totalEV = Optimizer.topCrewToCite[crew.name].totalEVContribution;
-            crew.rarityPotential.fullyCited.voyagesImproved = Optimizer.topCrewToCite[crew.name].voyagesImproved;
-          }
+          // if (Optimizer.topCrewToCite[crew.name]) {
+          //   crew.rarityPotential.fullyCited.totalEV = Optimizer.topCrewToCite[crew.name].totalEVContribution;
+          //   crew.rarityPotential.fullyCited.voyagesImproved = Optimizer.topCrewToCite[crew.name].voyagesImproved;
+          // }
           // else if (Number(rarity) === crew.maxRarity) {
           //   var potentialFullyCitedRankings = Optimizer.createFullyCitedRankingArrayWithCandidate(crew.name, skillPairing);
           //   var potentialFullyCitedCrew = Optimizer.findBestCrewWithRarityDependentCandidate(potentialFullyCitedRankings, crew.name);
