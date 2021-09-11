@@ -4235,10 +4235,11 @@ const Optimizer = {
     let candidatePlaced = false;
     while (currentRarityIndex < currentRarityRankingArray.length) {
       let crew = Optimizer.rosterLibrary[currentRarityRankingArray[currentRarityIndex]];
-      if (candidateName == crew.name) {
-        currentRarityWithCandidateRankingArray.push(candidateName);
+      if (candidateName === crew.name && candidatePlaced) {
+        // currentRarityWithCandidateRankingArray.push(candidateName);
         currentRarityIndex++;
-      } else if (candidate.skillData[candidateRarityLevel].voyageMetrics[skillPairing] > crew.skillData[crew.rarity].voyageMetrics[skillPairing] && !candidatePlaced) {
+      } else
+      if (candidate.skillData[candidateRarityLevel].voyageMetrics[skillPairing] > crew.skillData[crew.rarity].voyageMetrics[skillPairing] && !candidatePlaced) {
         currentRarityWithCandidateRankingArray.push(candidateName);
         candidatePlaced = true;
       } else {
@@ -4307,6 +4308,41 @@ const Optimizer = {
         } else {
           rankIndex++;
         }
+        //console.log(`${crewName} was added to the ${skillPairing} voyage`);
+      } else if (skillPools[crew.skillSet.signature].full) {
+        //console.log(`${crewName} is not good enough for ${skillPairing} voyages`);
+        rankIndex++;
+      } else {
+        console.log("We're still stuck in an infinite while loop?!");
+      }
+    }
+    let voyageCrew = skillPools.voyageCrew.assignedCrew;
+    return voyageCrew;
+  },
+  findBestFullyCitedCrewWithCandidate(rankArray) {
+    Optimizer.resetVoyageSkillPools();
+    let skillPools = Optimizer.voyageSkillPools;
+    let rankIndex = 0;
+    while (!skillPools.voyageCrew.full && rankIndex < rankArray.length) {
+      //console.log(`While loop trying to process ${citationCandidate} in ${skillPairing} voyages`);
+      let crewName = rankArray[rankIndex];
+      let crew = Optimizer.rosterLibrary[crewName];
+      //console.log(`${crewName}is rank ${rankIndex + 1} for ${skillPairing} voyages. Assessing.`);
+      //console.log(crew);
+      //If there is room in the immediate seats available and if they're already invested
+      //console.log(`Assessing Skill Pools:`);
+      //console.log(skillPools);
+      //console.log(`Assessing signature ${crew.skillSet.signature}`);
+      if (!skillPools[crew.skillSet.signature].full) {
+        //console.log(`Entering the skillset Signature check! chronsInvested(${crew.chronsInvested}), crew.name(${crew.name}), citationCandidate(${citationCandidate})`);
+        //console.log("Entering the invested or trainee loop");
+        Optimizer.assignCrewToPools(skillPools[crew.skillSet.signature], crew.name);
+        //Optimizer.assessPoolVacancies(Optimizer.voyageSkillPools.voyageCrew);
+        rankIndex++;
+        // if (crew.chronsInvested || crew.name === candidateName) {
+        // } else {
+        //   rankIndex++;
+        // }
         //console.log(`${crewName} was added to the ${skillPairing} voyage`);
       } else if (skillPools[crew.skillSet.signature].full) {
         //console.log(`${crewName} is not good enough for ${skillPairing} voyages`);
@@ -4440,10 +4476,10 @@ const Optimizer = {
     console.log('INTERCEPTIONS!!!')
     var crew = Optimizer.beholdCrew[slot];
     crew.rarityPotential = {
-      // fullyCited: {
-      //   totalEV: 0,
-      //   voyagesImproved: []
-      // }
+      fullyCited: {
+        totalEV: 0,
+        voyagesImproved: []
+      }
     };
     for (var rarity in crew.skillData) {
       // if (rarity <= crew.rarity) {
@@ -4469,17 +4505,17 @@ const Optimizer = {
           // if (Optimizer.topCrewToCite[crew.name]) {
           //   crew.rarityPotential.fullyCited.totalEV = Optimizer.topCrewToCite[crew.name].totalEVContribution;
           //   crew.rarityPotential.fullyCited.voyagesImproved = Optimizer.topCrewToCite[crew.name].voyagesImproved;
-          // }
-          // else if (Number(rarity) === crew.maxRarity) {
-          //   var potentialFullyCitedRankings = Optimizer.createFullyCitedRankingArrayWithCandidate(crew.name, skillPairing);
-          //   var potentialFullyCitedCrew = Optimizer.findBestCrewWithRarityDependentCandidate(potentialFullyCitedRankings, crew.name);
-          //   var potentialFullyCitedEV = Optimizer.findEVofVoyageCrewAtMaxRarity(potentialFullyCitedCrew, skillPairing);
-          //   var potentialFullyCitedAddedEV = potentialFullyCitedEV - Optimizer.topVoyageCrews.citedBest[skillPairing].totalEV;
-          //   if (potentialFullyCitedAddedEV > 0) {
-          //     crew.rarityPotential.fullyCited.totalEV += potentialFullyCitedAddedEV;
-          //     crew.rarityPotential.fullyCited.voyagesImproved.push(skillPairing);
-          //   }
-          // }
+          // } else
+          if (Number(rarity) === crew.maxRarity) {
+            var potentialFullyCitedRankings = Optimizer.createFullyCitedRankingArrayWithCandidate(crew.name, skillPairing);
+            var potentialFullyCitedCrew = Optimizer.findBestFullyCitedCrewWithCandidate(potentialFullyCitedRankings, crew.name);
+            var potentialFullyCitedEV = Optimizer.findEVofVoyageCrewAtMaxRarity(potentialFullyCitedCrew, skillPairing);
+            var potentialFullyCitedAddedEV = potentialFullyCitedEV - Optimizer.topVoyageCrews.currentBest[skillPairing].totalEV;
+            if (potentialFullyCitedAddedEV > 0) {
+              crew.rarityPotential.fullyCited.totalEV += potentialFullyCitedAddedEV;
+              crew.rarityPotential.fullyCited.voyagesImproved.push(skillPairing);
+            }
+          }
         });
       }
     }

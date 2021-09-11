@@ -39,6 +39,19 @@ function Star(props) {
     starFill = 0;
   }
 
+  var fillColor = 'gold';
+  var emptyColor = 'lightgrey';
+  if (props.beholdRarity) {
+    emptyColor = 'rgb(25, 25, 25)';
+    if (props.currentRarity > props.beholdRarity) {
+      fillColor = 'lightgray';
+    } else if (props.currentRarity === props.beholdRarity) {
+      fillColor = 'green';
+    } else {
+      fillColor = 'blue';
+    }
+  }
+
   return (
     <svg viewBox={`0 0 ${2 * (radius + strokeWidth)} ${2 * (radius + strokeWidth)}`}
       width={2 * (radius + strokeWidth)} height={2 * (radius + strokeWidth)} className="rating-star">
@@ -67,7 +80,7 @@ function Star(props) {
         ${points[11][0]} ${points[11][1]}
         `}
         stroke="black" strokeWidth={strokeWidth}
-        fill="lightgrey"
+        fill={emptyColor}
       />
 
       <path d={`
@@ -83,7 +96,7 @@ function Star(props) {
         ${points[9][0]} ${points[9][1]}
         ${points[10][0]} ${points[10][1]}
         ${points[11][0]} ${points[11][1]}
-        `} fill="gold"
+        `} fill={fillColor}
         stroke="black" strokeWidth={strokeWidth}
       />
 
