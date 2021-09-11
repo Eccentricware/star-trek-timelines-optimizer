@@ -40,15 +40,31 @@ function Star(props) {
   }
 
   var fillColor = 'gold';
-  var emptyColor = 'lightgrey';
+  // var emptyColor = 'darkgray';
+  var emptyColor = 'rgb(32, 32, 32)';
+  var outline = 'black';
   if (props.beholdRarity) {
-    emptyColor = 'rgb(25, 25, 25)';
     if (props.currentRarity > props.beholdRarity) {
-      fillColor = 'lightgray';
+      fillColor = 'none';
+      if (props.chronsInvested) {
+        outline = 'gold';
+      } else {
+        outline = 'silver';
+      }
     } else if (props.currentRarity === props.beholdRarity) {
-      fillColor = 'green';
+      if (props.chronsInvested) {
+        fillColor='dodgerblue';
+        //outline = 'gold';
+      } else {
+        fillColor = 'green';
+        //outline = 'silver';
+      }
     } else {
-      fillColor = 'blue';
+      if (props.chronsInvested) {
+        fillColor = 'gold';
+      } else {
+        fillColor = 'silver';
+      }
     }
   }
 
@@ -79,7 +95,7 @@ function Star(props) {
         ${points[10][0]} ${points[10][1]}
         ${points[11][0]} ${points[11][1]}
         `}
-        stroke="black" strokeWidth={strokeWidth}
+        stroke="black" strokeWidth={strokeWidth + 1}
         fill={emptyColor}
       />
 
@@ -97,7 +113,7 @@ function Star(props) {
         ${points[10][0]} ${points[10][1]}
         ${points[11][0]} ${points[11][1]}
         `} fill={fillColor}
-        stroke="black" strokeWidth={strokeWidth}
+        stroke={outline} strokeWidth={strokeWidth + 0.5}
       />
 
       <use clipPath={`url(#clip-${props.starId})`} href={`#${props.starId}`}/>

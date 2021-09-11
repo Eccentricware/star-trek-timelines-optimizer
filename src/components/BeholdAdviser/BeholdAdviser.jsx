@@ -139,7 +139,11 @@ const BeholdAdviser = (props) => {
                     ?
                     <div>
                       <div>
-                        <BeholdRarityDisplay currentRarity={5} maxRarity={5} beholdRarity={props.beholdCrew.slot1.beholdRarity}/>
+                        <BeholdRarityDisplay maxRarity={props.beholdCrew.slot1.maxRarity}
+                          currentRarity={5}
+                          beholdRarity={props.beholdCrew.slot1.beholdRarity}
+                          chronsInvested={props.beholdCrew.slot1.chronsInvested}
+                        />
                         <div>{Math.ceil(props.beholdCrew.slot1.rarityPotential[5].addedEV)}</div>
                       </div>
                       <div>
@@ -166,7 +170,7 @@ const BeholdAdviser = (props) => {
                     ?
                     <div>
                       <div>
-                        <BeholdRarityDisplay currentRarity={4} maxRarity={5} beholdRarity={props.beholdCrew.slot1.beholdRarity} />
+                        <BeholdRarityDisplay currentRarity={4} maxRarity={props.beholdCrew.slot1.maxRarity} beholdRarity={props.beholdCrew.slot1.beholdRarity} chronsInvested={props.beholdCrew.slot1.chronsInvested} />
                         <div>{Math.ceil(props.beholdCrew.slot1.rarityPotential[4].addedEV)}</div>
                       </div>
                       <div>
@@ -193,7 +197,7 @@ const BeholdAdviser = (props) => {
                     ?
                     <div>
                       <div>
-                        <BeholdRarityDisplay currentRarity={3} maxRarity={5} beholdRarity={props.beholdCrew.slot1.beholdRarity} />
+                        <BeholdRarityDisplay currentRarity={3} maxRarity={props.beholdCrew.slot1.maxRarity} beholdRarity={props.beholdCrew.slot1.beholdRarity} chronsInvested={props.beholdCrew.slot1.chronsInvested} />
                         <div>{Math.ceil(props.beholdCrew.slot1.rarityPotential[3].addedEV)}</div>
                       </div>
                       <div>
@@ -220,7 +224,7 @@ const BeholdAdviser = (props) => {
                     ?
                     <div>
                       <div>
-                        <BeholdRarityDisplay currentRarity={2} maxRarity={5} beholdRarity={props.beholdCrew.slot1.beholdRarity} />
+                        <BeholdRarityDisplay currentRarity={2} maxRarity={props.beholdCrew.slot1.maxRarity} beholdRarity={props.beholdCrew.slot1.beholdRarity} chronsInvested={props.beholdCrew.slot1.chronsInvested} />
                         <div>{Math.ceil(props.beholdCrew.slot1.rarityPotential[2].addedEV)}</div>
                       </div>
                       <div>
@@ -247,7 +251,7 @@ const BeholdAdviser = (props) => {
                     ?
                     <div>
                       <div>
-                        <BeholdRarityDisplay currentRarity={1} maxRarity={5} beholdRarity={props.beholdCrew.slot1.beholdRarity} />
+                        <BeholdRarityDisplay currentRarity={1} maxRarity={props.beholdCrew.slot1.maxRarity} beholdRarity={props.beholdCrew.slot1.beholdRarity} chronsInvested={props.beholdCrew.slot1.chronsInvested} />
                         <div>{Math.ceil(props.beholdCrew.slot1.rarityPotential[1].addedEV)}</div>
                       </div>
                       <div>
@@ -269,14 +273,294 @@ const BeholdAdviser = (props) => {
                 }
               </div>
             </td>
-            <td>Crew 2 Citation EVs</td>
-            <td>Crew 3 Citation EVs</td>
+            <td>
+              <div>
+                {
+                  props.beholdCrew.slot2 && props.beholdCrew.slot2.rarityPotential[5]
+                    ?
+                    <div>
+                      <div>
+                        <BeholdRarityDisplay maxRarity={props.beholdCrew.slot2.maxRarity}
+                          currentRarity={5}
+                          beholdRarity={props.beholdCrew.slot2.beholdRarity}
+                          chronsInvested={props.beholdCrew.slot2.chronsInvested}
+                        />
+                        <div>{Math.ceil(props.beholdCrew.slot2.rarityPotential[5].addedEV)}</div>
+                      </div>
+                      <div>
+                        {
+                          props.beholdCrew.slot2.rarityPotential[5].voyagesImproved.map((voyagePair, i) => {
+                            return (
+                              <svg width="50" height="22" viewBox="0 0 50 22" padding="0" key={i}>
+                                {icons[voyagePair.split('/')[1]].voyageSecondary}
+                                {icons[voyagePair.split('/')[0]].primary}
+                              </svg>
+                            )
+                          })
+                        }
+                      </div>
+                    </div>
+
+                    :
+                    null
+                }
+              </div>
+              <div>
+                {
+                  props.beholdCrew.slot2 && props.beholdCrew.slot2.rarityPotential[4]
+                    ?
+                    <div>
+                      <div>
+                        <BeholdRarityDisplay currentRarity={4} maxRarity={props.beholdCrew.slot2.maxRarity} beholdRarity={props.beholdCrew.slot2.beholdRarity} chronsInvested={props.beholdCrew.slot2.chronsInvested} />
+                        <div>{Math.ceil(props.beholdCrew.slot2.rarityPotential[4].addedEV)}</div>
+                      </div>
+                      <div>
+                        {
+                          props.beholdCrew.slot2.rarityPotential[4].voyagesImproved.map((voyagePair, i) => {
+                            return (
+                              <svg width="50" height="22" viewBox="0 0 50 22" padding="0" key={i}>
+                                {icons[voyagePair.split('/')[1]].voyageSecondary}
+                                {icons[voyagePair.split('/')[0]].primary}
+                              </svg>
+                            )
+                          })
+                        }
+                      </div>
+                    </div>
+
+                    :
+                    null
+                }
+              </div>
+              <div>
+                {
+                  props.beholdCrew.slot2 && props.beholdCrew.slot2.rarityPotential[3]
+                    ?
+                    <div>
+                      <div>
+                        <BeholdRarityDisplay currentRarity={3} maxRarity={props.beholdCrew.slot2.maxRarity} beholdRarity={props.beholdCrew.slot2.beholdRarity} chronsInvested={props.beholdCrew.slot2.chronsInvested} />
+                        <div>{Math.ceil(props.beholdCrew.slot2.rarityPotential[3].addedEV)}</div>
+                      </div>
+                      <div>
+                        {
+                          props.beholdCrew.slot2.rarityPotential[3].voyagesImproved.map((voyagePair, i) => {
+                            return (
+                              <svg width="50" height="22" viewBox="0 0 50 22" padding="0" key={i}>
+                                {icons[voyagePair.split('/')[1]].voyageSecondary}
+                                {icons[voyagePair.split('/')[0]].primary}
+                              </svg>
+                            )
+                          })
+                        }
+                      </div>
+                    </div>
+
+                    :
+                    null
+                }
+              </div>
+              <div>
+                {
+                  props.beholdCrew.slot2 && props.beholdCrew.slot2.rarityPotential[2]
+                    ?
+                    <div>
+                      <div>
+                        <BeholdRarityDisplay currentRarity={2} maxRarity={props.beholdCrew.slot2.maxRarity} beholdRarity={props.beholdCrew.slot2.beholdRarity} chronsInvested={props.beholdCrew.slot2.chronsInvested} />
+                        <div>{Math.ceil(props.beholdCrew.slot2.rarityPotential[2].addedEV)}</div>
+                      </div>
+                      <div>
+                        {
+                          props.beholdCrew.slot2.rarityPotential[2].voyagesImproved.map((voyagePair, i) => {
+                            return (
+                              <svg width="50" height="22" viewBox="0 0 50 22" padding="0" key={i}>
+                                {icons[voyagePair.split('/')[1]].voyageSecondary}
+                                {icons[voyagePair.split('/')[0]].primary}
+                              </svg>
+                            )
+                          })
+                        }
+                      </div>
+                    </div>
+
+                    :
+                    null
+                }
+              </div>
+              <div>
+                {
+                  props.beholdCrew.slot2 && props.beholdCrew.slot2.rarityPotential[1]
+                    ?
+                    <div>
+                      <div>
+                        <BeholdRarityDisplay currentRarity={1} maxRarity={props.beholdCrew.slot2.maxRarity} beholdRarity={props.beholdCrew.slot2.beholdRarity} chronsInvested={props.beholdCrew.slot2.chronsInvested} />
+                        <div>{Math.ceil(props.beholdCrew.slot2.rarityPotential[1].addedEV)}</div>
+                      </div>
+                      <div>
+                        {
+                          props.beholdCrew.slot2.rarityPotential[1].voyagesImproved.map((voyagePair, i) => {
+                            return (
+                              <svg width="50" height="22" viewBox="0 0 50 22" padding="0" key={i}>
+                                {icons[voyagePair.split('/')[1]].voyageSecondary}
+                                {icons[voyagePair.split('/')[0]].primary}
+                              </svg>
+                            )
+                          })
+                        }
+                      </div>
+                    </div>
+
+                    :
+                    null
+                }
+              </div>
+            </td>
+            <td>
+              <div>
+                {
+                  props.beholdCrew.slot3 && props.beholdCrew.slot3.rarityPotential[5]
+                    ?
+                    <div>
+                      <div>
+                        <BeholdRarityDisplay maxRarity={props.beholdCrew.slot3.maxRarity}
+                          currentRarity={5}
+                          beholdRarity={props.beholdCrew.slot3.beholdRarity}
+                          chronsInvested={props.beholdCrew.slot3.chronsInvested}
+                        />
+                        <div>{Math.ceil(props.beholdCrew.slot3.rarityPotential[5].addedEV)}</div>
+                      </div>
+                      <div>
+                        {
+                          props.beholdCrew.slot3.rarityPotential[5].voyagesImproved.map((voyagePair, i) => {
+                            return (
+                              <svg width="50" height="22" viewBox="0 0 50 22" padding="0" key={i}>
+                                {icons[voyagePair.split('/')[1]].voyageSecondary}
+                                {icons[voyagePair.split('/')[0]].primary}
+                              </svg>
+                            )
+                          })
+                        }
+                      </div>
+                    </div>
+
+                    :
+                    null
+                }
+              </div>
+              <div>
+                {
+                  props.beholdCrew.slot3 && props.beholdCrew.slot3.rarityPotential[4]
+                    ?
+                    <div>
+                      <div>
+                        <BeholdRarityDisplay currentRarity={4} maxRarity={props.beholdCrew.slot3.maxRarity} beholdRarity={props.beholdCrew.slot3.beholdRarity} chronsInvested={props.beholdCrew.slot3.chronsInvested} />
+                        <div>{Math.ceil(props.beholdCrew.slot3.rarityPotential[4].addedEV)}</div>
+                      </div>
+                      <div>
+                        {
+                          props.beholdCrew.slot3.rarityPotential[4].voyagesImproved.map((voyagePair, i) => {
+                            return (
+                              <svg width="50" height="22" viewBox="0 0 50 22" padding="0" key={i}>
+                                {icons[voyagePair.split('/')[1]].voyageSecondary}
+                                {icons[voyagePair.split('/')[0]].primary}
+                              </svg>
+                            )
+                          })
+                        }
+                      </div>
+                    </div>
+
+                    :
+                    null
+                }
+              </div>
+              <div>
+                {
+                  props.beholdCrew.slot3 && props.beholdCrew.slot3.rarityPotential[3]
+                    ?
+                    <div>
+                      <div>
+                        <BeholdRarityDisplay currentRarity={3} maxRarity={props.beholdCrew.slot3.maxRarity} beholdRarity={props.beholdCrew.slot3.beholdRarity} chronsInvested={props.beholdCrew.slot3.chronsInvested} />
+                        <div>{Math.ceil(props.beholdCrew.slot3.rarityPotential[3].addedEV)}</div>
+                      </div>
+                      <div>
+                        {
+                          props.beholdCrew.slot3.rarityPotential[3].voyagesImproved.map((voyagePair, i) => {
+                            return (
+                              <svg width="50" height="22" viewBox="0 0 50 22" padding="0" key={i}>
+                                {icons[voyagePair.split('/')[1]].voyageSecondary}
+                                {icons[voyagePair.split('/')[0]].primary}
+                              </svg>
+                            )
+                          })
+                        }
+                      </div>
+                    </div>
+
+                    :
+                    null
+                }
+              </div>
+              <div>
+                {
+                  props.beholdCrew.slot3 && props.beholdCrew.slot3.rarityPotential[2]
+                    ?
+                    <div>
+                      <div>
+                        <BeholdRarityDisplay currentRarity={2} maxRarity={props.beholdCrew.slot3.maxRarity} beholdRarity={props.beholdCrew.slot3.beholdRarity} chronsInvested={props.beholdCrew.slot3.chronsInvested} />
+                        <div>{Math.ceil(props.beholdCrew.slot3.rarityPotential[2].addedEV)}</div>
+                      </div>
+                      <div>
+                        {
+                          props.beholdCrew.slot3.rarityPotential[2].voyagesImproved.map((voyagePair, i) => {
+                            return (
+                              <svg width="50" height="22" viewBox="0 0 50 22" padding="0" key={i}>
+                                {icons[voyagePair.split('/')[1]].voyageSecondary}
+                                {icons[voyagePair.split('/')[0]].primary}
+                              </svg>
+                            )
+                          })
+                        }
+                      </div>
+                    </div>
+
+                    :
+                    null
+                }
+              </div>
+              <div>
+                {
+                  props.beholdCrew.slot3 && props.beholdCrew.slot3.rarityPotential[1]
+                    ?
+                    <div>
+                      <div>
+                        <BeholdRarityDisplay currentRarity={1} maxRarity={props.beholdCrew.slot3.maxRarity} beholdRarity={props.beholdCrew.slot3.beholdRarity} chronsInvested={props.beholdCrew.slot3.chronsInvested} />
+                        <div>{Math.ceil(props.beholdCrew.slot3.rarityPotential[1].addedEV)}</div>
+                      </div>
+                      <div>
+                        {
+                          props.beholdCrew.slot3.rarityPotential[1].voyagesImproved.map((voyagePair, i) => {
+                            return (
+                              <svg width="50" height="22" viewBox="0 0 50 22" padding="0" key={i}>
+                                {icons[voyagePair.split('/')[1]].voyageSecondary}
+                                {icons[voyagePair.split('/')[0]].primary}
+                              </svg>
+                            )
+                          })
+                        }
+                      </div>
+                    </div>
+
+                    :
+                    null
+                }
+              </div>
+            </td>
           </tr>
           <tr>
             <td className="category">Collection Count</td>
-            <td>{props.beholdCrew.slot1 ? props.beholdCrew.slot1.collections.length: null}</td>
-            <td>{props.beholdCrew.slot2 ? props.beholdCrew.slot2.collections.length: null}</td>
-            <td>{props.beholdCrew.slot3 ? props.beholdCrew.slot3.collections.length: null}</td>
+            <td>{props.beholdCrew.slot1 ? props.beholdCrew.slot1.collections.length: null} Collections </td>
+            <td>{props.beholdCrew.slot2 ? props.beholdCrew.slot2.collections.length: null} Collections </td>
+            <td>{props.beholdCrew.slot3 ? props.beholdCrew.slot3.collections.length: null} Collections </td>
           </tr>
           <tr>
             <td className="category">Shuttle (Bases)</td>
