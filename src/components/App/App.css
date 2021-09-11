@@ -64,3 +64,7 @@ Body {
 .voyages-improved {
   border-left: solid gray 1px;
 }
+
+td, tr {
+  border-top: solid gray 1px;
+}
