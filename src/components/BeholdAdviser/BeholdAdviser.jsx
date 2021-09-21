@@ -549,7 +549,6 @@ const BeholdAdviser = (props) => {
                         }
                       </div>
                     </div>
-
                     :
                     null
                 }
