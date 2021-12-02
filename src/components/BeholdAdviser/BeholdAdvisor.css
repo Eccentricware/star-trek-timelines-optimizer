@@ -1,0 +1,9 @@
+.behold-section {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.behold-candidate-input {
+  width: 100%;
+}

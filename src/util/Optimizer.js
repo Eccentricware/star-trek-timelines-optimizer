@@ -1,3 +1,5 @@
+import DataCoreCrew from './DataCoreCrew.js';
+
 const Optimizer = {
   saveFile: {},
   rosterLibrary: {},
@@ -18,7 +20,6 @@ const Optimizer = {
     "engineering/medicine",
     "engineering/science",
     "engineering/security",
-    //"expectedVoyage",
     "medicine/command",
     "medicine/diplomacy",
     "medicine/engineering",
@@ -2944,196 +2945,6 @@ const Optimizer = {
       }
     }
   },
-  topCrewToTrain: {},
-  topCrewToCite: {},
-  rankedCrewToTrain: [],
-  rankedCrewToCite: [],
-  bestPossibleCrew: {
-    gauntlet: {
-      "command/diplomacy": {
-        name: "",
-        gauntletPairingEV: 0
-      },
-      "command/engineering": {
-        name: "",
-        gauntletPairingEV: 0
-      },
-      "command/medicine": {
-        name: "",
-        gauntletPairingEV: 0
-      },
-      "command/science": {
-        name: "",
-        gauntletPairingEV: 0
-      },
-      "command/security": {
-        name: "",
-        gauntletPairingEV: 0
-      },
-      "diplomacy/engineering": {
-        name: "",
-        gauntletPairingEV: 0
-      },
-      "diplomacy/medicine": {
-        name: "",
-        gauntletPairingEV: 0
-      },
-      "diplomacy/science": {
-        name: "",
-        gauntletPairingEV: 0
-      },
-      "diplomacy/security": {
-        name: "",
-        gauntletPairingEV: 0
-      },
-      "engineering/medicine": {
-        name: "",
-        gauntletPairingEV: 0
-      },
-      "engineering/science": {
-        name: "",
-        gauntletPairingEV: 0
-      },
-      "engineering/security": {
-        name: "",
-        gauntletPairingEV: 0
-      },
-      "medicine/science": {
-        name: "",
-        gauntletPairingEV: 0
-      },
-      "medicine/security": {
-        name: "",
-        gauntletPairingEV: 0
-      },
-      "science/security": {
-        name: "",
-        gauntletPairingEV: 0
-      }
-    },
-    voyages: {
-      "command/diplomacy": {
-        name: "",
-        voyagePairingEV: 0
-      },
-      "command/engineering": {
-        name: "",
-        voyagePairingEV: 0
-      },
-      "command/medicine": {
-        name: "",
-        voyagePairingEV: 0
-      },
-      "command/science": {
-        name: "",
-        voyagePairingEV: 0
-      },
-      "command/security": {
-        name: "",
-        voyagePairingEV: 0
-      },
-      "diplomacy/command": {
-        name: "",
-        voyagePairingEV: 0
-      },
-      "diplomacy/engineering": {
-        name: "",
-        voyagePairingEV: 0
-      },
-      "diplomacy/medicine": {
-        name: "",
-        voyagePairingEV: 0
-      },
-      "diplomacy/science": {
-        name: "",
-        voyagePairingEV: 0
-      },
-      "diplomacy/security": {
-        name: "",
-        voyagePairingEV: 0
-      },
-      "engineering/command": {
-        name: "",
-        voyagePairingEV: 0
-      },
-      "engineering/diplomacy": {
-        name: "",
-        voyagePairingEV: 0
-      },
-      "engineering/medicine": {
-        name: "",
-        voyagePairingEV: 0
-      },
-      "engineering/science": {
-        name: "",
-        voyagePairingEV: 0
-      },
-      "engineering/security": {
-        name: "",
-        voyagePairingEV: 0
-      },
-      "medicine/command": {
-        name: "",
-        voyagePairingEV: 0
-      },
-      "medicine/diplomacy": {
-        name: "",
-        voyagePairingEV: 0
-      },
-      "medicine/engineering": {
-        name: "",
-        voyagePairingEV: 0
-      },
-      "medicine/science": {
-        name: "",
-        voyagePairingEV: 0
-      },
-      "medicine/security": {
-        name: "",
-        voyagePairingEV: 0
-      },
-      "science/command": {
-        name: "",
-        voyagePairingEV: 0
-      },
-      "science/diplomacy": {
-        name: "",
-        voyagePairingEV: 0
-      },
-      "science/engineering": {
-        name: "",
-        voyagePairingEV: 0
-      },
-      "science/medicine": {
-        name: "",
-        voyagePairingEV: 0
-      },
-      "science/security": {
-        name: "",
-        voyagePairingEV: 0
-      },
-      "security/command": {
-        name: "",
-        voyagePairingEV: 0
-      },
-      "security/diplomacy": {
-        name: "",
-        voyagePairingEV: 0
-      },
-      "security/engineering": {
-        name: "",
-        voyagePairingEV: 0
-      },
-      "security/medicine": {
-        name: "",
-        voyagePairingEV: 0
-      },
-      "security/science": {
-        name: "",
-        voyagePairingEV: 0
-      }
-    }
-  },
   findBestRankings(dataCoreCrew) {
     dataCoreCrew.forEach((crew, i) => {
       //Finding best crew possible
@@ -3154,13 +2965,13 @@ const Optimizer = {
             let gauntletPairingEV = 0
             for (var skill in crew.base_skills) {
               if (skill == primarySkill) {
-                voyagePairingEV += (crew.base_skills[skill].core + (crew.base_skills[skill].range_min + crew.base_skills[skill].range_max)/2) * 0.35 ;
-                gauntletPairingEV += (crew.base_skills[skill].range_min + crew.base_skills[skill].range_max)/2
+                voyagePairingEV += (crew.base_skills[skill].core + (crew.base_skills[skill].range_min + crew.base_skills[skill].range_max) / 2) * 0.35;
+                gauntletPairingEV += (crew.base_skills[skill].range_min + crew.base_skills[skill].range_max) / 2
               } else if (skill == secondarySkill) {
-                voyagePairingEV += (crew.base_skills[skill].core + (crew.base_skills[skill].range_min + crew.base_skills[skill].range_max)/2) * 0.25;
-                gauntletPairingEV += (crew.base_skills[skill].range_min + crew.base_skills[skill].range_max)/2
+                voyagePairingEV += (crew.base_skills[skill].core + (crew.base_skills[skill].range_min + crew.base_skills[skill].range_max) / 2) * 0.25;
+                gauntletPairingEV += (crew.base_skills[skill].range_min + crew.base_skills[skill].range_max) / 2
               } else {
-                voyagePairingEV += (crew.base_skills[skill].core + (crew.base_skills[skill].range_min + crew.base_skills[skill].range_max)/2) * 0.1;
+                voyagePairingEV += (crew.base_skills[skill].core + (crew.base_skills[skill].range_min + crew.base_skills[skill].range_max) / 2) * 0.1;
               }
             }
 
@@ -3204,7 +3015,7 @@ const Optimizer = {
       }
     });
 
-    //Adding froze crew's IDs to frozenCrewIDArray
+    //Adding frozen crew's IDs to frozenCrewIDArray
     saveData.player.character.stored_immortals.forEach(crew => {
       if (!frozenCrewIDArray.includes(crew.id)) {
         frozenCrewIDArray.push(crew.id);
@@ -3213,7 +3024,9 @@ const Optimizer = {
 
     //Populates relevant data for acquired crew
     //Data processed differently if immortalized or not
-    dataCoreCrew.forEach(crew => {
+    dataCoreCrew.forEach((crew, index) => {
+      // name to index processing for behold access
+      Optimizer.nameToIndex[crew.name] = index;
 
       //Processing frozen crew
       if (frozenCrewIDArray.includes(crew.archetype_id)) {
@@ -3327,16 +3140,16 @@ const Optimizer = {
 
       for (let skillIndex = 0; skillIndex < crew.skillSet.skillArray.length; skillIndex++) {
         crew.skillSet.signature += crew.skillSet.skillArray[skillIndex].slice(0, crew.skillSet.skillArray[skillIndex].indexOf('_'));
-          if (skillIndex != crew.skillSet.skillArray.length - 1) {
-            crew.skillSet.signature += "/";
-          }
+        if (skillIndex != crew.skillSet.skillArray.length - 1) {
+          crew.skillSet.signature += "/";
+        }
       }
       let voyageSkills = ["command_skill", "diplomacy_skill", "engineering_skill", "security_skill", "medicine_skill", "science_skill"];
       for (var rarity in crew.skillData) {
         let rarityLevel = crew.skillData[rarity];
         for (var skill in rarityLevel.base_skills) {
           let assessedSkill = rarityLevel.base_skills[skill];
-          crew.skillData[rarity].base_skills[skill].ev = assessedSkill.core + (assessedSkill.range_min + assessedSkill.range_max)/2;
+          crew.skillData[rarity].base_skills[skill].ev = assessedSkill.core + (assessedSkill.range_min + assessedSkill.range_max) / 2;
         }
         rarityLevel.voyageMetrics = {};
         voyageSkills.forEach(primarySkill => {
@@ -3364,8 +3177,6 @@ const Optimizer = {
         }
         crew.skillData[rarity].voyageMetrics.expectedVoyage = expectedVoyage / 30;
       }
-
-
     });
 
     console.log("Crew Library:");
@@ -3564,9 +3375,9 @@ const Optimizer = {
       }
       for (var skill in relevantSkillCounts) {
         if (relevantSkillCounts[skill].length < leastKnownSkillCount && leastSkillsPerCrew.includes(relevantSkillCounts[skill][0])) {
-            //&& relevantSkillCounts[skill].length > 0
-            //&& Optimizer.topVoyageCrews.currentBest[skillPairing].seatAssignments[skill].length < 2
-            //&& oneSkillCrew.includes(relevantSkillCounts[skill][0])) {
+          //&& relevantSkillCounts[skill].length > 0
+          //&& Optimizer.topVoyageCrews.currentBest[skillPairing].seatAssignments[skill].length < 2
+          //&& oneSkillCrew.includes(relevantSkillCounts[skill][0])) {
           leastKnownSkill = skill;
           leastKnownSkillCount = relevantSkillCounts[skill].length;
         }
@@ -3654,7 +3465,7 @@ const Optimizer = {
             Optimizer.rosterLibrary[crewName].skillData[Optimizer.rosterLibrary[crewName].rarity].base_skills[skill].ev;
         };
         Optimizer.topVoyageCrews.currentBest[skillPairing].totalEV +=
-        Optimizer.rosterLibrary[crewName].skillData[Optimizer.rosterLibrary[crewName].rarity].voyageMetrics[skillPairing];
+          Optimizer.rosterLibrary[crewName].skillData[Optimizer.rosterLibrary[crewName].rarity].voyageMetrics[skillPairing];
       });
       /*
       console.log(`Seated array at the end of the ${skillPairing} voyage is somehow:`);
@@ -3734,7 +3545,7 @@ const Optimizer = {
             Optimizer.rosterLibrary[crewName].skillData[Optimizer.rosterLibrary[crewName].rarity].base_skills[skill].ev;
         };
         Optimizer.topVoyageCrews.rarityBest[skillPairing].totalEV +=
-        Optimizer.rosterLibrary[crewName].skillData[Optimizer.rosterLibrary[crewName].rarity].voyageMetrics[skillPairing];
+          Optimizer.rosterLibrary[crewName].skillData[Optimizer.rosterLibrary[crewName].rarity].voyageMetrics[skillPairing];
       });
       /*
       let seatedCrew = [];
@@ -3870,6 +3681,196 @@ const Optimizer = {
       //console.log(Optimizer.topVoyageCrews);
       //console.log(`Best ${skillPairing} crew for current rarity found`);
     });
+  },
+  topCrewToTrain: {},
+  topCrewToCite: {},
+  rankedCrewToTrain: [],
+  rankedCrewToCite: [],
+  bestPossibleCrew: {
+    gauntlet: {
+      "command/diplomacy": {
+        name: "",
+        gauntletPairingEV: 0
+      },
+      "command/engineering": {
+        name: "",
+        gauntletPairingEV: 0
+      },
+      "command/medicine": {
+        name: "",
+        gauntletPairingEV: 0
+      },
+      "command/science": {
+        name: "",
+        gauntletPairingEV: 0
+      },
+      "command/security": {
+        name: "",
+        gauntletPairingEV: 0
+      },
+      "diplomacy/engineering": {
+        name: "",
+        gauntletPairingEV: 0
+      },
+      "diplomacy/medicine": {
+        name: "",
+        gauntletPairingEV: 0
+      },
+      "diplomacy/science": {
+        name: "",
+        gauntletPairingEV: 0
+      },
+      "diplomacy/security": {
+        name: "",
+        gauntletPairingEV: 0
+      },
+      "engineering/medicine": {
+        name: "",
+        gauntletPairingEV: 0
+      },
+      "engineering/science": {
+        name: "",
+        gauntletPairingEV: 0
+      },
+      "engineering/security": {
+        name: "",
+        gauntletPairingEV: 0
+      },
+      "medicine/science": {
+        name: "",
+        gauntletPairingEV: 0
+      },
+      "medicine/security": {
+        name: "",
+        gauntletPairingEV: 0
+      },
+      "science/security": {
+        name: "",
+        gauntletPairingEV: 0
+      }
+    },
+    voyages: {
+      "command/diplomacy": {
+        name: "",
+        voyagePairingEV: 0
+      },
+      "command/engineering": {
+        name: "",
+        voyagePairingEV: 0
+      },
+      "command/medicine": {
+        name: "",
+        voyagePairingEV: 0
+      },
+      "command/science": {
+        name: "",
+        voyagePairingEV: 0
+      },
+      "command/security": {
+        name: "",
+        voyagePairingEV: 0
+      },
+      "diplomacy/command": {
+        name: "",
+        voyagePairingEV: 0
+      },
+      "diplomacy/engineering": {
+        name: "",
+        voyagePairingEV: 0
+      },
+      "diplomacy/medicine": {
+        name: "",
+        voyagePairingEV: 0
+      },
+      "diplomacy/science": {
+        name: "",
+        voyagePairingEV: 0
+      },
+      "diplomacy/security": {
+        name: "",
+        voyagePairingEV: 0
+      },
+      "engineering/command": {
+        name: "",
+        voyagePairingEV: 0
+      },
+      "engineering/diplomacy": {
+        name: "",
+        voyagePairingEV: 0
+      },
+      "engineering/medicine": {
+        name: "",
+        voyagePairingEV: 0
+      },
+      "engineering/science": {
+        name: "",
+        voyagePairingEV: 0
+      },
+      "engineering/security": {
+        name: "",
+        voyagePairingEV: 0
+      },
+      "medicine/command": {
+        name: "",
+        voyagePairingEV: 0
+      },
+      "medicine/diplomacy": {
+        name: "",
+        voyagePairingEV: 0
+      },
+      "medicine/engineering": {
+        name: "",
+        voyagePairingEV: 0
+      },
+      "medicine/science": {
+        name: "",
+        voyagePairingEV: 0
+      },
+      "medicine/security": {
+        name: "",
+        voyagePairingEV: 0
+      },
+      "science/command": {
+        name: "",
+        voyagePairingEV: 0
+      },
+      "science/diplomacy": {
+        name: "",
+        voyagePairingEV: 0
+      },
+      "science/engineering": {
+        name: "",
+        voyagePairingEV: 0
+      },
+      "science/medicine": {
+        name: "",
+        voyagePairingEV: 0
+      },
+      "science/security": {
+        name: "",
+        voyagePairingEV: 0
+      },
+      "security/command": {
+        name: "",
+        voyagePairingEV: 0
+      },
+      "security/diplomacy": {
+        name: "",
+        voyagePairingEV: 0
+      },
+      "security/engineering": {
+        name: "",
+        voyagePairingEV: 0
+      },
+      "security/medicine": {
+        name: "",
+        voyagePairingEV: 0
+      },
+      "security/science": {
+        name: "",
+        voyagePairingEV: 0
+      }
+    }
   },
   findCrewToTrain() {
     Optimizer.skillPairingsArray.forEach(skillPairing => {
@@ -4234,10 +4235,11 @@ const Optimizer = {
     let candidatePlaced = false;
     while (currentRarityIndex < currentRarityRankingArray.length) {
       let crew = Optimizer.rosterLibrary[currentRarityRankingArray[currentRarityIndex]];
-      if (candidateName == crew.name) {
-        currentRarityWithCandidateRankingArray.push(candidateName);
+      if (candidateName === crew.name && candidatePlaced) {
+        // currentRarityWithCandidateRankingArray.push(candidateName);
         currentRarityIndex++;
-      } else if (candidate.skillData[candidateRarityLevel].voyageMetrics[skillPairing] > crew.skillData[crew.rarity].voyageMetrics[skillPairing] && !candidatePlaced) {
+      } else
+      if (candidate.skillData[candidateRarityLevel].voyageMetrics[skillPairing] > crew.skillData[crew.rarity].voyageMetrics[skillPairing] && !candidatePlaced) {
         currentRarityWithCandidateRankingArray.push(candidateName);
         candidatePlaced = true;
       } else {
@@ -4246,6 +4248,30 @@ const Optimizer = {
       }
     }
     return currentRarityWithCandidateRankingArray;
+  },
+  createFullyCitedRankingArrayWithCandidate(candidateName, skillPairing) {
+    let candidate = Optimizer.rosterLibrary[candidateName];
+    let fullyCitedRankingArray = Optimizer.voyageSkillRankings.fullyCited[skillPairing];
+    if (fullyCitedRankingArray.includes(candidateName)) {
+      return fullyCitedRankingArray;
+    }
+    let fullyCitedWithCandidateRankingArray = [];
+    let fullyCitedIndex = 0;
+    let candidatePlaced = false;
+    while (fullyCitedIndex < fullyCitedRankingArray.length) {
+      let crew = Optimizer.rosterLibrary[fullyCitedRankingArray[fullyCitedIndex]];
+      if (candidateName === crew.name) {
+        fullyCitedWithCandidateRankingArray.push(candidateName);
+        fullyCitedIndex++;
+      } else if (candidate.skillData[candidate.maxRarity].voyageMetrics[skillPairing] > crew.skillData[crew.maxRarity].voyageMetrics[skillPairing] && !candidatePlaced) {
+        fullyCitedWithCandidateRankingArray.push(candidateName);
+        candidatePlaced = true;
+      } else {
+        fullyCitedWithCandidateRankingArray.push(crew.name);
+        fullyCitedIndex++;
+      }
+    }
+    return fullyCitedWithCandidateRankingArray;
   },
   createRankingArrayWithoutCandidate(candidateName, skillPairing) {
     let candidate = Optimizer.rosterLibrary[candidateName];
@@ -4282,6 +4308,41 @@ const Optimizer = {
         } else {
           rankIndex++;
         }
+        //console.log(`${crewName} was added to the ${skillPairing} voyage`);
+      } else if (skillPools[crew.skillSet.signature].full) {
+        //console.log(`${crewName} is not good enough for ${skillPairing} voyages`);
+        rankIndex++;
+      } else {
+        console.log("We're still stuck in an infinite while loop?!");
+      }
+    }
+    let voyageCrew = skillPools.voyageCrew.assignedCrew;
+    return voyageCrew;
+  },
+  findBestFullyCitedCrewWithCandidate(rankArray) {
+    Optimizer.resetVoyageSkillPools();
+    let skillPools = Optimizer.voyageSkillPools;
+    let rankIndex = 0;
+    while (!skillPools.voyageCrew.full && rankIndex < rankArray.length) {
+      //console.log(`While loop trying to process ${citationCandidate} in ${skillPairing} voyages`);
+      let crewName = rankArray[rankIndex];
+      let crew = Optimizer.rosterLibrary[crewName];
+      //console.log(`${crewName}is rank ${rankIndex + 1} for ${skillPairing} voyages. Assessing.`);
+      //console.log(crew);
+      //If there is room in the immediate seats available and if they're already invested
+      //console.log(`Assessing Skill Pools:`);
+      //console.log(skillPools);
+      //console.log(`Assessing signature ${crew.skillSet.signature}`);
+      if (!skillPools[crew.skillSet.signature].full) {
+        //console.log(`Entering the skillset Signature check! chronsInvested(${crew.chronsInvested}), crew.name(${crew.name}), citationCandidate(${citationCandidate})`);
+        //console.log("Entering the invested or trainee loop");
+        Optimizer.assignCrewToPools(skillPools[crew.skillSet.signature], crew.name);
+        //Optimizer.assessPoolVacancies(Optimizer.voyageSkillPools.voyageCrew);
+        rankIndex++;
+        // if (crew.chronsInvested || crew.name === candidateName) {
+        // } else {
+        //   rankIndex++;
+        // }
         //console.log(`${crewName} was added to the ${skillPairing} voyage`);
       } else if (skillPools[crew.skillSet.signature].full) {
         //console.log(`${crewName} is not good enough for ${skillPairing} voyages`);
@@ -4338,6 +4399,14 @@ const Optimizer = {
       } else {
         totalVoyageEV += crew.skillData[crew.rarity].voyageMetrics[skillPairing];
       }
+    });
+    return totalVoyageEV;
+  },
+  findEVofVoyageCrewAtMaxRarity(voyageCrew, skillPairing) {
+    let totalVoyageEV = 0;
+    voyageCrew.forEach(crewName => {
+      var maxRarity = Optimizer.rosterLibrary[crewName].maxRarity
+      totalVoyageEV += Optimizer.rosterLibrary[crewName].skillData[maxRarity].voyageMetrics[skillPairing];
     });
     return totalVoyageEV;
   },
@@ -4403,6 +4472,54 @@ const Optimizer = {
       });
     }
   },
+  findBeholdCrewPotential(slot) {
+    console.log('INTERCEPTIONS!!!')
+    var crew = Optimizer.beholdCrew[slot];
+    crew.rarityPotential = {
+      fullyCited: {
+        totalEV: 0,
+        voyagesImproved: []
+      }
+    };
+    for (var rarity in crew.skillData) {
+      // if (rarity <= crew.rarity) {
+      //   crew.rarityPotential[rarity] = 'Already Acquired';
+      // } else
+      {
+        crew.rarityPotential[rarity] = {
+          addedEV: 0,
+          voyageEVs: {},
+          voyagesImproved: []
+        };
+        Optimizer.skillPairingsArray.forEach(skillPairing => {
+          var potentialSkillRankings = Optimizer.createCandidateRarityRankingArray(crew.name, rarity, skillPairing);
+          var potentialVoyageCrew = Optimizer.findBestCrewWithRarityDependentCandidate(potentialSkillRankings, crew.name);
+          var potentialCrewEV = Optimizer.findEVofVoyageCrewWithRarityDependentCandidate(
+            potentialVoyageCrew, skillPairing, crew.name, rarity
+          );
+          crew.rarityPotential[rarity].voyageEVs[skillPairing] = potentialCrewEV - Optimizer.topVoyageCrews.currentBest[skillPairing].totalEV;
+          if (crew.rarityPotential[rarity].voyageEVs[skillPairing] > 0) {
+            crew.rarityPotential[rarity].voyagesImproved.push(skillPairing);
+            crew.rarityPotential[rarity].addedEV += crew.rarityPotential[rarity].voyageEVs[skillPairing];
+          }
+          // if (Optimizer.topCrewToCite[crew.name]) {
+          //   crew.rarityPotential.fullyCited.totalEV = Optimizer.topCrewToCite[crew.name].totalEVContribution;
+          //   crew.rarityPotential.fullyCited.voyagesImproved = Optimizer.topCrewToCite[crew.name].voyagesImproved;
+          // } else
+          if (Number(rarity) === crew.maxRarity) {
+            var potentialFullyCitedRankings = Optimizer.createFullyCitedRankingArrayWithCandidate(crew.name, skillPairing);
+            var potentialFullyCitedCrew = Optimizer.findBestFullyCitedCrewWithCandidate(potentialFullyCitedRankings, crew.name);
+            var potentialFullyCitedEV = Optimizer.findEVofVoyageCrewAtMaxRarity(potentialFullyCitedCrew, skillPairing);
+            var potentialFullyCitedAddedEV = potentialFullyCitedEV - Optimizer.topVoyageCrews.currentBest[skillPairing].totalEV;
+            if (potentialFullyCitedAddedEV > 0) {
+              crew.rarityPotential.fullyCited.totalEV += potentialFullyCitedAddedEV;
+              crew.rarityPotential.fullyCited.voyagesImproved.push(skillPairing);
+            }
+          }
+        });
+      }
+    }
+  },
   sortCrewToCite() {
     let sortingArray = [];
     for (let crewName in Optimizer.topCrewToCite) {
@@ -4426,6 +4543,103 @@ const Optimizer = {
       sortingArray.splice(sortingArray.indexOf(highestContributingTrainee), 1);
     }
   },
+  beholdCrew: {
+    slot1: undefined,
+    slot2: undefined,
+    slot3: undefined
+  },
+  nameToIndex: {},
+  setBeholdSlot(slot, crewName) {
+    var crew = DataCoreCrew[this.nameToIndex[crewName]];
+    if (this.rosterLibrary[crewName]) {
+      this.beholdCrew[slot] = this.rosterLibrary[crew.name];
+      this.beholdCrew[slot].beholdRarity = this.beholdCrew[slot].rarity + 1;
+    } else {
+      let skillData = {};
+      crew.skill_data.forEach(rarity => {
+        skillData[rarity.rarity] = rarity;
+      });
+      var skillsRanked = [];
+      for (var skill in crew.base_skills) {
+        var skillArray = skill.split('_');
+        skillsRanked.push(skillArray[0]);
+      }
+      skillData[crew.max_rarity] = {};
+      skillData[crew.max_rarity].base_skills = crew.base_skills;
+      let newCrew = {
+        id: crew.archetype_id,
+        name: crew.name,
+        shortName: crew.short_name,
+        rarity: 0,
+        beholdRarity: 1,
+        maxRarity: crew.max_rarity,
+        immortalityStatus: {
+          fullyEquipped: false,
+          fullyLeveled: false,
+          fullyFused: false,
+          immortalized: false
+        },
+        chronsInvested: false,
+        frozen: false,
+        skillData: skillData,
+        skillsRanked: skillsRanked,
+        collections: crew.collections
+      };
+
+      newCrew.skillSet = {
+        skillArray: [],
+        signature: ''
+      };
+      for (var skill in newCrew.skillData[1].base_skills) {
+        if (!newCrew.skillSet.skillArray.includes(skill) && skill != "rarity") {
+          newCrew.skillSet.skillArray.push(skill);
+        }
+      }
+      newCrew.skillSet.skillArray.sort();
+
+      for (let skillIndex = 0; skillIndex < newCrew.skillSet.skillArray.length; skillIndex++) {
+        newCrew.skillSet.signature += newCrew.skillSet.skillArray[skillIndex].slice(0, newCrew.skillSet.skillArray[skillIndex].indexOf('_'));
+        if (skillIndex != newCrew.skillSet.skillArray.length - 1) {
+          newCrew.skillSet.signature += "/";
+        }
+      }
+      let voyageSkills = ["command_skill", "diplomacy_skill", "engineering_skill", "security_skill", "medicine_skill", "science_skill"];
+      for (var rarity in newCrew.skillData) {
+        let rarityLevel = newCrew.skillData[rarity];
+        for (var skill in rarityLevel.base_skills) {
+          let assessedSkill = rarityLevel.base_skills[skill];
+          newCrew.skillData[rarity].base_skills[skill].ev = assessedSkill.core + (assessedSkill.range_min + assessedSkill.range_max) / 2;
+        }
+        rarityLevel.voyageMetrics = {};
+        voyageSkills.forEach(primarySkill => {
+          voyageSkills.forEach(secondarySkill => {
+            if (primarySkill !== secondarySkill) {
+              let skillPairing = `${primarySkill.slice(0, primarySkill.indexOf('_'))}/${secondarySkill.slice(0, secondarySkill.indexOf('_'))}`;
+              let voyageComboRating = 0;
+              for (var skill in rarityLevel.base_skills) {
+                let assessedSkill = rarityLevel.base_skills[skill];
+                if (skill === primarySkill) {
+                  voyageComboRating += assessedSkill.ev * 0.35;
+                } else if (skill === secondarySkill) {
+                  voyageComboRating += assessedSkill.ev * 0.25;
+                } else {
+                  voyageComboRating += assessedSkill.ev * 0.1;
+                }
+                newCrew.skillData[rarity].voyageMetrics[skillPairing] = voyageComboRating;
+              }
+            }
+          });
+        });
+        let expectedVoyage = 0;
+        for (var skillPairing in newCrew.skillData[rarity].voyageMetrics) {
+          expectedVoyage += newCrew.skillData[rarity].voyageMetrics[skillPairing];
+        }
+        newCrew.skillData[rarity].voyageMetrics.expectedVoyage = expectedVoyage / 30;
+      }
+      this.beholdCrew[slot] = newCrew;
+      this.rosterLibrary[crewName] = newCrew;
+    }
+  }
 };
 
 export default Optimizer;

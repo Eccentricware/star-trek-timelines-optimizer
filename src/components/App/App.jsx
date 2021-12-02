@@ -2,19 +2,24 @@ import './App.css';
 import React, { useState } from 'react';
 import Optimizer from '../../util/Optimizer';
 import SaveImport from '../SaveImport/SaveImport.jsx';
+import ModeSelector from '../ModeSelector/ModeSelector.jsx';
+import BeholdAdviser from '../BeholdAdviser/BeholdAdviser.jsx';
 import CrewToTrainDisplay from '../CrewToTrainDisplay/CrewToTrainDisplay.jsx';
 import DataCoreCrew from '../../util/DataCoreCrew';
 
-function App() {
+const App = (props) => {
   const [saveData, setSaveData] = useState(Optimizer);
   const [rankedCrewToTrain, setRankedCrewToTrain] = useState([]);
   const [rankedCrewToCite, setRankedCrewToCite] = useState([]);
-  const [mode, setMode] = useState('Awaiting Save File');
+  const [mode, setMode] = useState('waiting');
   const [loadingMessage, setLoadingMessage] = useState('');
+  const [beholdCrew, setBeholdCrew] = useState(Optimizer.beholdCrew);
+
+
 
   function startProcessing(saveData) {
     var loadingMessages = [
-      'Keep your shirt on!',
+      'Keep your red shirt on and watch out!',
       'Don\'t get in a twist!',
       'Hold on a second!',
       'What am I, a computer?!',
@@ -61,15 +66,36 @@ function App() {
     console.log(Optimizer.rankedCrewToCite);
     setRankedCrewToTrain(Optimizer.rankedCrewToTrain);
     setRankedCrewToCite(Optimizer.rankedCrewToCite);
-    setMode('loaded');
+    setMode('behold');
+  }
+
+  const processCandidate = (slot, name) => {
+    console.log(`Candidate ${slot} is ${name} and has an index of ${Optimizer.nameToIndex[name]}`);
+    Optimizer.setBeholdSlot(slot, name);
+    console.log(Optimizer.beholdCrew[slot]);
+    Optimizer.findBeholdCrewPotential(slot);
+    setBeholdCrew(Optimizer.beholdCrew);
+    setTimeout(() => {
+      setMode('behold');
+    }, 0);
   }
 
   return (
     <div className="App">
-      {rankedCrewToTrain.length === 0 ? <SaveImport label={saveData} importData={importData} startProcessing={startProcessing} optimizer={Optimizer} /> : null}
-      {rankedCrewToTrain.length > 0 ? <CrewToTrainDisplay rankedCrewToTrain={rankedCrewToTrain}/> : null}
+      {mode !== 'waiting' && mode !== 'loading' ? <ModeSelector mode={mode} setMode={setMode} /> : null}
+      {
+        mode === 'behold'
+          ?
+        <BeholdAdviser processCandidate={processCandidate}
+          beholdCrew={beholdCrew}
+        />
+          :
+        null
+      }
+      {mode === 'waiting' ? <SaveImport label={saveData} importData={importData} startProcessing={startProcessing} optimizer={Optimizer} /> : null}
+      {mode === 'training' ? <CrewToTrainDisplay rankedCrewToTrain={rankedCrewToTrain}/> : null}
       {mode === 'loading' ? <div className="loading-message">Loading: {loadingMessage}</div> : null}
-      <div className="update-date">Last Game Roster Update: 9-8-2021</div>
+      <div className="update-date">Last Game Roster Update: 11-20-2021</div>
     </div>
   );
 }

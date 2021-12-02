@@ -13,9 +13,9 @@ const CrewToTrain = ({crew, rank}) => {
   const icons = {
     command: {
       primary: <CommandIcon color='gold'position={0}/>,
-      secondary: <CommandIcon color='silver'position={0}/>,
-      tertiary: <CommandIcon color='#b08d57'position={0}/>,
-      voyageSecondary: <CommandIcon color='silver' position={24} />
+      secondary: <CommandIcon color='silver'position={6}/>,
+      tertiary: <CommandIcon color='#b08d57'position={6}/>,
+      voyageSecondary: <CommandIcon color='silver' position={16} />
     },
     diplomacy: {
       primary: <DiplomacyIcon color='gold' position={-6}/>,
@@ -62,9 +62,9 @@ const CrewToTrain = ({crew, rank}) => {
         {crew.skills[2] ? icons[crew.skills[2]].tertiary : null}
       </td>
       <td className="voyages-improved">
-        {crew.voyagesImproved.map(voyagePair => {
+        {crew.voyagesImproved.map((voyagePair, i) => {
           return(
-            <svg width="50" height="22" viewBox="0 0 50 22" padding="0">
+            <svg width="50" height="22" viewBox="0 0 50 22" padding="0" key={i}>
               {icons[voyagePair.split('/')[1]].voyageSecondary}
               {icons[voyagePair.split('/')[0]].primary}
             </svg>

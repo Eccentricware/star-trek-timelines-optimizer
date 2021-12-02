@@ -39,6 +39,35 @@ function Star(props) {
     starFill = 0;
   }
 
+  var fillColor = 'gold';
+  // var emptyColor = 'darkgray';
+  var emptyColor = 'rgb(32, 32, 32)';
+  var outline = 'black';
+  if (props.beholdRarity) {
+    if (props.currentRarity > props.beholdRarity) {
+      fillColor = 'none';
+      if (props.chronsInvested) {
+        outline = 'gold';
+      } else {
+        outline = 'silver';
+      }
+    } else if (props.currentRarity === props.beholdRarity) {
+      if (props.chronsInvested) {
+        fillColor='dodgerblue';
+        //outline = 'gold';
+      } else {
+        fillColor = 'green';
+        //outline = 'silver';
+      }
+    } else {
+      if (props.chronsInvested) {
+        fillColor = 'gold';
+      } else {
+        fillColor = 'silver';
+      }
+    }
+  }
+
   return (
     <svg viewBox={`0 0 ${2 * (radius + strokeWidth)} ${2 * (radius + strokeWidth)}`}
       width={2 * (radius + strokeWidth)} height={2 * (radius + strokeWidth)} className="rating-star">
@@ -66,8 +95,8 @@ function Star(props) {
         ${points[10][0]} ${points[10][1]}
         ${points[11][0]} ${points[11][1]}
         `}
-        stroke="black" strokeWidth={strokeWidth}
-        fill="lightgrey"
+        stroke="black" strokeWidth={strokeWidth + 1}
+        fill={emptyColor}
       />
 
       <path d={`
@@ -83,8 +112,8 @@ function Star(props) {
         ${points[9][0]} ${points[9][1]}
         ${points[10][0]} ${points[10][1]}
         ${points[11][0]} ${points[11][1]}
-        `} fill="gold"
-        stroke="black" strokeWidth={strokeWidth}
+        `} fill={fillColor}
+        stroke={outline} strokeWidth={strokeWidth + 0.5}
       />
 
       <use clipPath={`url(#clip-${props.starId})`} href={`#${props.starId}`}/>
