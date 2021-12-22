@@ -95,7 +95,7 @@ const App = (props) => {
       {mode === 'waiting' ? <SaveImport label={saveData} importData={importData} startProcessing={startProcessing} optimizer={Optimizer} /> : null}
       {mode === 'training' ? <CrewToTrainDisplay rankedCrewToTrain={rankedCrewToTrain}/> : null}
       {mode === 'loading' ? <div className="loading-message">Loading: {loadingMessage}</div> : null}
-      <div className="update-date">Last Game Roster Update: 12-1-2021</div>
+      <div className="update-date">Last Game Roster Update: 12-21-2021</div>
     </div>
   );
 }
