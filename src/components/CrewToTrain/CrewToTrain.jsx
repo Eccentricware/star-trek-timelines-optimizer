@@ -15,13 +15,13 @@ const CrewToTrain = ({crew, rank}) => {
       primary: <CommandIcon color='gold'position={0}/>,
       secondary: <CommandIcon color='silver'position={6}/>,
       tertiary: <CommandIcon color='#b08d57'position={6}/>,
-      voyageSecondary: <CommandIcon color='silver' position={16} />
+      voyageSecondary: <CommandIcon color='silver' position={22} />
     },
     diplomacy: {
       primary: <DiplomacyIcon color='gold' position={-6}/>,
-      secondary: <DiplomacyIcon color='silver' position={-6}/>,
+      secondary: <DiplomacyIcon color='silver' position={0}/>,
       tertiary: <DiplomacyIcon color='#b08d57' position={-6}/>,
-      voyageSecondary: <DiplomacyIcon color='silver' position={16} />
+      voyageSecondary: <DiplomacyIcon color='silver' position={10} />
     },
     engineering: {
       primary: <EngineeringIcon color='gold' position={0}/>,
@@ -38,7 +38,7 @@ const CrewToTrain = ({crew, rank}) => {
     science: {
       primary: <ScienceIcon color='gold' position={0}/>,
       secondary: <ScienceIcon color='silver' position={0}/>,
-      tertiary: <ScienceIcon color='#b08d57' position={0}/>,
+      tertiary: <ScienceIcon color='#b08d57' position={8}/>,
       voyageSecondary: <ScienceIcon color='silver' position={24} />
     },
     security: {
