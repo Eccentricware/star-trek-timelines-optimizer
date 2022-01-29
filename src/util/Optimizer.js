@@ -3131,6 +3131,7 @@ const Optimizer = {
         skillArray: [],
         signature: ''
       };
+      crew.shuttleRanks = {};
       for (var skill in crew.skillData[1].base_skills) {
         if (!crew.skillSet.skillArray.includes(skill) && skill != "rarity") {
           crew.skillSet.skillArray.push(skill);
@@ -3686,6 +3687,7 @@ const Optimizer = {
   topCrewToCite: {},
   rankedCrewToTrain: [],
   rankedCrewToCite: [],
+  rankedCrewForShuttles: {},
   bestPossibleCrew: {
     gauntlet: {
       "command/diplomacy": {
@@ -4638,6 +4640,95 @@ const Optimizer = {
       }
       this.beholdCrew[slot] = newCrew;
       this.rosterLibrary[crewName] = newCrew;
+    }
+  },
+  sortUntrainedShuttlers() {
+    let singleSkills = [
+      'command_skill',
+      'diplomacy_skill',
+      'engineering_skill',
+      'medicine_skill',
+      'science_skill',
+      'security_skill'
+    ];
+    singleSkills.forEach(skill => {
+      let unsortedRoster = this.rosterArray.slice();
+      // Remove those without skill
+      for (let index = unsortedRoster.length - 1; index >= 0; index--) {
+        if (!unsortedRoster[index].skillSet.skillArray.includes(skill)) {
+          unsortedRoster.splice(index, 1);
+        }
+      }
+
+      let sortedRoster = [];
+      while (unsortedRoster.length > 0) {
+        let bestShuttlerSkill = 0;
+        let bestShuttlerIndex = -1;
+        for (let index = 0; index < unsortedRoster.length; index ++) {
+          let crewRarity = unsortedRoster[index].rarity;
+          let crewSkill = unsortedRoster[index].skillData[crewRarity].base_skills[skill].core;
+          if (crewSkill > bestShuttlerSkill) {
+            bestShuttlerSkill = crewSkill;
+            bestShuttlerIndex = index;
+          }
+        }
+        sortedRoster.push(unsortedRoster[bestShuttlerIndex]);
+        unsortedRoster.splice(bestShuttlerIndex, 1);
+      }
+
+      sortedRoster.forEach((crew, index) => {
+        crew.shuttleRanks[skill] = index + 1;
+        if (!crew.chronsInvested) {
+          if (!this.rankedCrewForShuttles[skill]) {
+            this.rankedCrewForShuttles[skill] = [crew];
+          } else {
+            this.rankedCrewForShuttles[skill].push(crew);
+          }
+        }
+      });
+    });
+
+    for (let skillIndex1 = 0; skillIndex1 < singleSkills.length - 1; skillIndex1++) {
+      for (let skillIndex2 = skillIndex1 + 1; skillIndex2 < singleSkills.length; skillIndex2++) {
+        let skill1 = singleSkills[skillIndex1];
+        let skill2 = singleSkills[skillIndex2];
+        let skillSignature = `${skill1}/${skill2}`;
+        let unsortedRoster = this.rosterArray.slice();
+        // Remove those without skill
+        for (let index = unsortedRoster.length - 1; index >= 0; index--) {
+          if (!unsortedRoster[index].skillSet.skillArray.includes(singleSkills[skillIndex1])
+            || !unsortedRoster[index].skillSet.skillArray.includes(singleSkills[skillIndex2])) {
+            unsortedRoster.splice(index, 1);
+          }
+        }
+
+        let sortedRoster = [];
+        while (unsortedRoster.length > 0) {
+          let bestShuttlerSkill = 0;
+          let bestShuttlerIndex = -1;
+          for (let index = 0; index < unsortedRoster.length; index++) {
+            let crewRarity = unsortedRoster[index].rarity;
+            let crewSkill = unsortedRoster[index].skillData[crewRarity].base_skills[skill1].core
+              + unsortedRoster[index].skillData[crewRarity].base_skills[skill2].core;
+            if (crewSkill > bestShuttlerSkill) {
+              bestShuttlerSkill = crewSkill;
+              bestShuttlerIndex = index;
+            }
+          }
+          sortedRoster.push(unsortedRoster[bestShuttlerIndex]);
+          unsortedRoster.splice(bestShuttlerIndex, 1);
+        }
+        sortedRoster.forEach((crew, index) => {
+          crew.shuttleRanks[skillSignature] = index + 1;
+          if (!crew.chronsInvested) {
+            if (!this.rankedCrewForShuttles[skillSignature]) {
+              this.rankedCrewForShuttles[skillSignature] = [crew];
+            } else {
+              this.rankedCrewForShuttles[skillSignature].push(crew);
+            }
+          }
+        });
+      }
     }
   }
 };
