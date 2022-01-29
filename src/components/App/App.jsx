@@ -2,10 +2,11 @@ import './App.css';
 import React, { useState } from 'react';
 import Optimizer from '../../util/Optimizer';
 import SaveImport from '../SaveImport/SaveImport.jsx';
+import DataCoreCrew from '../../util/DataCoreCrew';
 import ModeSelector from '../ModeSelector/ModeSelector.jsx';
 import BeholdAdviser from '../BeholdAdviser/BeholdAdviser.jsx';
 import CrewToTrainDisplay from '../CrewToTrainDisplay/CrewToTrainDisplay.jsx';
-import DataCoreCrew from '../../util/DataCoreCrew';
+import ShuttleRankings from '../ShuttleRankings/ShuttleRankings.jsx';
 
 const App = (props) => {
   const [saveData, setSaveData] = useState(Optimizer);
@@ -94,6 +95,7 @@ const App = (props) => {
       }
       {mode === 'waiting' ? <SaveImport label={saveData} importData={importData} startProcessing={startProcessing} optimizer={Optimizer} /> : null}
       {mode === 'training' ? <CrewToTrainDisplay rankedCrewToTrain={rankedCrewToTrain}/> : null}
+      {mode === 'shuttlery' && <ShuttleRankings/>}
       {mode === 'loading' ? <div className="loading-message">Loading: {loadingMessage}</div> : null}
       <div className="update-date">Last Game Roster Update: 1-27-2022</div>
     </div>

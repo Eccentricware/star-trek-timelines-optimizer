@@ -8,6 +8,7 @@ const ModeSelector = ({mode, setMode}) => {
         <option value="training">Training</option>
         <option value="citation">Citation</option>
         <option value="behold">Behold</option>
+        <option value="shuttlery">Shuttles</option>
       </select>
     </div>
   )
