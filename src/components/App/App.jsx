@@ -60,6 +60,7 @@ const App = (props) => {
     Optimizer.findCrewToCite();
     Optimizer.findEVContributionOfCrewToCite();
     Optimizer.sortCrewToCite();
+    Optimizer.sortUntrainedShuttlers();
     console.log(Optimizer);
     console.log("Ranked Crew to Train");
     console.log(Optimizer.rankedCrewToTrain);
