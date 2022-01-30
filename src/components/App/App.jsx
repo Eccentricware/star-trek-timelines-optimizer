@@ -12,10 +12,10 @@ const App = (props) => {
   const [saveData, setSaveData] = useState(Optimizer);
   const [rankedCrewToTrain, setRankedCrewToTrain] = useState([]);
   const [rankedCrewToCite, setRankedCrewToCite] = useState([]);
+  const [rankedShuttleCrew, setRankedShuttleCrew] = useState({});
   const [mode, setMode] = useState('waiting');
   const [loadingMessage, setLoadingMessage] = useState('');
   const [beholdCrew, setBeholdCrew] = useState(Optimizer.beholdCrew);
-
 
 
   function startProcessing(saveData) {
@@ -68,6 +68,7 @@ const App = (props) => {
     console.log(Optimizer.rankedCrewToCite);
     setRankedCrewToTrain(Optimizer.rankedCrewToTrain);
     setRankedCrewToCite(Optimizer.rankedCrewToCite);
+    setRankedShuttleCrew(Optimizer.rankedCrewForShuttles);
     setMode('behold');
   }
 
@@ -96,7 +97,7 @@ const App = (props) => {
       }
       {mode === 'waiting' ? <SaveImport label={saveData} importData={importData} startProcessing={startProcessing} optimizer={Optimizer} /> : null}
       {mode === 'training' ? <CrewToTrainDisplay rankedCrewToTrain={rankedCrewToTrain}/> : null}
-      {mode === 'shuttlery' && <ShuttleRankings/>}
+      {mode === 'shuttlery' && <ShuttleRankings rankedShuttleCrew={rankedShuttleCrew}/>}
       {mode === 'loading' ? <div className="loading-message">Loading: {loadingMessage}</div> : null}
       <div className="update-date">Last Game Roster Update: 1-27-2022</div>
     </div>
