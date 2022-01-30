@@ -3687,7 +3687,7 @@ const Optimizer = {
   topCrewToCite: {},
   rankedCrewToTrain: [],
   rankedCrewToCite: [],
-  rankedCrewForShuttles: {},
+  rankedCrewForShuttles: [],
   bestPossibleCrew: {
     gauntlet: {
       "command/diplomacy": {
@@ -4676,15 +4676,16 @@ const Optimizer = {
         unsortedRoster.splice(bestShuttlerIndex, 1);
       }
 
+      let rankingArray = [];
       sortedRoster.forEach((crew, index) => {
         crew.shuttleRanks[skill] = index + 1;
         if (!crew.chronsInvested) {
-          if (!this.rankedCrewForShuttles[skill]) {
-            this.rankedCrewForShuttles[skill] = [crew];
-          } else {
-            this.rankedCrewForShuttles[skill].push(crew);
-          }
+          rankingArray.push(crew);
         }
+      });
+      this.rankedCrewForShuttles.push({
+        signature: skill,
+        crew: rankingArray
       });
     });
 
@@ -4718,15 +4719,16 @@ const Optimizer = {
           sortedRoster.push(unsortedRoster[bestShuttlerIndex]);
           unsortedRoster.splice(bestShuttlerIndex, 1);
         }
+        let rankingArray = [];
         sortedRoster.forEach((crew, index) => {
           crew.shuttleRanks[skillSignature] = index + 1;
           if (!crew.chronsInvested) {
-            if (!this.rankedCrewForShuttles[skillSignature]) {
-              this.rankedCrewForShuttles[skillSignature] = [crew];
-            } else {
-              this.rankedCrewForShuttles[skillSignature].push(crew);
-            }
+            rankingArray.push(crew);
           }
+        });
+        this.rankedCrewForShuttles.push({
+          signature: skillSignature,
+          crew: rankingArray
         });
       }
     }

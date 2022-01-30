@@ -68,3 +68,25 @@ Body {
 td, tr {
   border-top: solid gray 1px;
 }
+
+.shuttle-tables {
+  display: flex;
+  flex-wrap: nowrap;
+  width: 300px;
+}
+
+.shuttle-table {
+  border: 2px solid darkgray;
+  margin: 5px;
+}
+
+.shuttle-row {
+  width: 250px;
+  display: flex;
+  flex-direction: row;
+}
+
+.shuttle-row-name {
+  width: 225px;
+  text-align: left;
+}
