@@ -4071,7 +4071,7 @@ const Optimizer = {
             Optimizer.rosterLibrary[crewName].skillData[Optimizer.rosterLibrary[crewName].maxRarity].base_skills[skill].ev;
         };
         Optimizer.topVoyageCrews.citedBest[skillPairing].totalEV +=
-        Optimizer.rosterLibrary[crewName].skillData[Optimizer.rosterLibrary[crewName].maxRarity].voyageMetrics[skillPairing];
+          Optimizer.rosterLibrary[crewName].skillData[Optimizer.rosterLibrary[crewName].maxRarity].voyageMetrics[skillPairing];
       });
       /*
       let seatedCrew = [];
@@ -4222,7 +4222,8 @@ const Optimizer = {
               totalEVPerCitation: 0,
               totalEVNextCitation: 0,
               totalEVFullyCited: 0,
-              totalEVRemaining: 0
+              totalEVRemaining: 0,
+              skills: Optimizer.rosterLibrary[citedCrew].skillsRanked
             }
           }
         };
@@ -4540,7 +4541,9 @@ const Optimizer = {
         name: highestContributingTrainee,
         totalEVContribution: Optimizer.topCrewToCite[highestContributingTrainee].totalEVContribution,
         totalEVRemaining: Optimizer.topCrewToCite[highestContributingTrainee].totalEVRemaining,
-        evPerCitation: Optimizer.topCrewToCite[highestContributingTrainee].totalEVPerCitation
+        evPerCitation: Optimizer.topCrewToCite[highestContributingTrainee].totalEVPerCitation,
+        voyagesImproved: Optimizer.topCrewToCite[highestContributingTrainee].voyagesImproved,
+        skills: Optimizer.topCrewToCite[highestContributingTrainee].skills
       });
       sortingArray.splice(sortingArray.indexOf(highestContributingTrainee), 1);
     }

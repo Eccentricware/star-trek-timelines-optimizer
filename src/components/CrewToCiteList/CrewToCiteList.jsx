@@ -1,0 +1,26 @@
+import React from 'react';
+import CrewToCite from '../CrewToCite/CrewToCite.jsx';
+
+const CrewToCiteList = ({rankedCrewToCite}) => {
+  return (
+    <table>
+      <thead>
+        <th>Rank</th>
+        <th>Name</th>
+        <th>Rarity</th>
+        <th>EV</th>
+        <th>Skill Pool</th>
+        <th>Voyages Improved</th>
+      </thead>
+      <tbody>
+        {
+          rankedCrewToCite.map((crew, i) => {
+            return <CrewToCite key={i} rank={i + 1} crew={crew}/>
+          })
+        }
+      </tbody>
+    </table>
+  )
+}
+
+export default CrewToCiteList;

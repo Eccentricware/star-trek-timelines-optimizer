@@ -6,6 +6,7 @@ import DataCoreCrew from '../../util/DataCoreCrew';
 import ModeSelector from '../ModeSelector/ModeSelector.jsx';
 import BeholdAdviser from '../BeholdAdviser/BeholdAdviser.jsx';
 import CrewToTrainDisplay from '../CrewToTrainDisplay/CrewToTrainDisplay.jsx';
+import CrewToCiteDisplay from '../CrewToCiteDisplay/CrewToCiteDisplay.jsx';
 import ShuttleRankings from '../ShuttleRankings/ShuttleRankings.jsx';
 
 const App = (props) => {
@@ -95,7 +96,15 @@ const App = (props) => {
           :
         null
       }
-      {mode === 'waiting' ? <SaveImport label={saveData} importData={importData} startProcessing={startProcessing} optimizer={Optimizer} /> : null}
+      {mode === 'waiting' ?
+        <SaveImport label={saveData}
+          importData={importData}
+          startProcessing={startProcessing}
+          optimizer={Optimizer}
+        />
+        : null
+      }
+      {mode === 'citation' ? <CrewToCiteDisplay rankedCrewToCite={rankedCrewToCite}/> : null}
       {mode === 'training' ? <CrewToTrainDisplay rankedCrewToTrain={rankedCrewToTrain}/> : null}
       {mode === 'shuttlery' && <ShuttleRankings rankedShuttleCrew={rankedShuttleCrew}/>}
       {mode === 'loading' ? <div className="loading-message">Loading: {loadingMessage}</div> : null}
