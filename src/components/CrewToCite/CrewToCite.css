@@ -1,0 +1,21 @@
+.crew-name {
+  text-align: left;
+}
+
+.rarity-display {
+  text-align: left;
+  width: 125px;
+}
+
+.skill-icons {
+  display: flex;
+  width: 75;
+}
+
+.voyages-improved {
+  text-align: left;
+}
+
+td {
+  padding: 4px;
+}
