@@ -7,8 +7,8 @@ const CrewToCiteList = ({rankedCrewToCite}) => {
       <thead>
         <th>Rank</th>
         <th>Name</th>
-        <th>Rarity</th>
-        <th>EV</th>
+        <th>EV Total</th>
+        <th>Remaining</th>
         <th>Skill Pool</th>
         <th>Voyages Improved</th>
       </thead>

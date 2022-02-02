@@ -52,10 +52,8 @@ const CrewToCite = ({ crew, rank }) => {
     <tr>
       <td>{rank}</td>
       <td className="crew-name">{crew.name}</td>
-      <td className="rarity-display"><RarityDisplay currentRarity={crew.currentRarity}
-        maxRarity={crew.maxRarity} />
-      </td>
-      <td>{Math.ceil(crew.addedEV)}</td>
+      <td>{Math.ceil(crew.totalEVContribution)}</td>
+      <td>{Math.ceil(crew.totalEVRemaining)}</td>
       <td className="skill-icons">
         {icons[crew.skills[0]].primary}
         {crew.skills[1] ? icons[crew.skills[1]].secondary : null}
