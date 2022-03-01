@@ -1,0 +1,106 @@
+{
+  "symbol": "odo_constable_crew",
+  "name": "Constable Odo",
+  "short_name": "Odo",
+  "flavor": "Chief of Security on Deep Space Nine, Odo was a constant presence onboard the station.",
+  "archetype_id": 133,
+  "max_rarity": 3,
+  "equipment_slots": [
+    { "level": 1, "symbol": "bajoran_security_uniform_quality0_equip" }, { "level": 2, "symbol": "cardassian_monitor_quality0_equip" }, { "level": 4, "symbol": "bajoran_padd_quality0_equip" }, { "level": 5, "symbol": "odos_bucket_quality1_equip" },
+    { "level": 10, "symbol": "bajoran_security_uniform_quality1_equip" }, { "level": 13, "symbol": "coffee_quality0_equip" }, { "level": 16, "symbol": "bajoran_combadge_quality1_equip" }, { "level": 20, "symbol": "bajoran_security_uniform_quality1_equip" },
+    { "level": 20, "symbol": "security_reports_quality1_equip" }, { "level": 23, "symbol": "cardassian_encryption_algorithm_quality1_equip" }, { "level": 26, "symbol": "criminal_activity_report_quality1_equip" }, { "level": 30, "symbol": "case_files_quality1_equip" },
+    { "level": 30, "symbol": "odos_uniform_quality2_equip" }, { "level": 33, "symbol": "kayaking_holoprogram_quality1_equip" }, { "level": 36, "symbol": "padd_stylus_24c3_quality1_equip" }, { "level": 40, "symbol": "odos_uniform_quality2_equip" },
+    { "level": 40, "symbol": "odos_bucket_quality2_equip" }, { "level": 43, "symbol": "cardassian_monitor_quality1_equip" }, { "level": 46, "symbol": "security_codes_quality2_equip" }, { "level": 50, "symbol": "bajoran_combadge_quality2_equip" },
+    { "level": 50, "symbol": "odos_uniform_quality2_equip" }, { "level": 53, "symbol": "odos_padd_quality2_equip" }, { "level": 56, "symbol": "champagne_quality3_equip" }, { "level": 60, "symbol": "criminal_activity_report_quality3_equip" },
+    { "level": 60, "symbol": "odos_uniform_quality3_equip" }, { "level": 63, "symbol": "case_files_quality2_equip" }, { "level": 66, "symbol": "odos_monitor_quality3_equip" }, { "level": 70, "symbol": "odos_uniform_quality3_equip" },
+    { "level": 70, "symbol": "odos_bucket_quality3_equip" }, { "level": 73, "symbol": "cardassian_encryption_algorithm_quality2_equip" }, { "level": 76, "symbol": "kayaking_holoprogram_quality3_equip" }, { "level": 80, "symbol": "odos_padd_quality3_equip" },
+    { "level": 80, "symbol": "odos_uniform_quality3_equip" }, { "level": 83, "symbol": "cardassian_monitor_quality3_equip" }, { "level": 86, "symbol": "criminal_activity_report_quality3_equip" }, { "level": 90, "symbol": "case_files_quality3_equip" },
+    { "level": 90, "symbol": "odos_uniform_quality3_equip" }, { "level": 93, "symbol": "odos_monitor_quality3_equip" }, { "level": 96, "symbol": "odos_padd_quality3_equip" }, { "level": 99, "symbol": "odos_bucket_quality4_equip" }
+  ],
+  "voice_over": "crewvo_odo_security",
+  "traits": ["changeling", "bajoran", "constable", "investigator", "interrogator"],
+  "traits_hidden": ["nonhuman", "male", "organic", "ds9", "odo", "crew_max_rarity_3"],
+  "base_skills": {
+    "security_skill": { "core": 523, "range_min": 27, "range_max": 85 },
+    "command_skill": { "core": 317, "range_min": 107, "range_max": 225 }
+  },
+  "ship_battle": { "accuracy": 520, "crit_chance": 75, "crit_bonus": 300 },
+  "action": {
+    "bonus_amount": 6,
+      "name": "Justice",
+        "symbol": "odo_constable_action",
+          "cooldown": 16,
+            "initial_cooldown": 10
+              , "duration": 12,
+                "bonus_type": 0,
+                  "crew": 3604778,
+                    "icon": { "file": "/crew_icons/cm_odostandard_icon" },
+    "penalty": { "type": 3, "amount": 800 },
+    "special": false
+  },
+  "cross_fuse_targets": [],
+    "skill_data": [
+      { "rarity": 1, "base_skills": { "security_skill": { "core": 408, "range_min": 27, "range_max": 85 }, "command_skill": { "core": 196, "range_min": 107, "range_max": 225 } } },
+      { "rarity": 2, "base_skills": { "security_skill": { "core": 444, "range_min": 27, "range_max": 85 }, "command_skill": { "core": 246, "range_min": 107, "range_max": 225 } } }
+    ],
+      "intermediate_skill_data": [
+        {
+          "rarity": 1,
+          "level": 30,
+          "base_skills": {
+            "security_skill": { "core": 119, "range_min": 14, "range_max": 38 },
+            "command_skill": { "core": 71, "range_min": 8, "range_max": 18 }
+          },
+          "action": { "bonus_amount": 4, "name": "Justice", "symbol": "odo_constable_action", "cooldown": 16, "initial_cooldown": 10, "duration": 12, "bonus_type": 0, "crew": 3604767, "icon": { "file": "/crew_icons/cm_odostandard_icon" }, "penalty": { "type": 3, "amount": 800 }, "special": false },
+          "ship_battle": { "accuracy": 30, "crit_bonus": 25 }
+        }, { "rarity": 1, "level": 20, "base_skills": { "security_skill": { "core": 93, "range_min": 12, "range_max": 26 }, "command_skill": { "core": 59, "range_min": 7, "range_max": 13 } }, "action": { "bonus_amount": 4, "name": "Justice", "symbol": "odo_constable_action", "cooldown": 16, "initial_cooldown": 10, "duration": 12, "bonus_type": 0, "crew": 3604768, "icon": { "file": "/crew_icons/cm_odostandard_icon" }, "penalty": { "type": 3, "amount": 800 }, "special": false }, "ship_battle": { "accuracy": 30 } }, { "rarity": 1, "level": 50, "base_skills": { "security_skill": { "core": 197, "range_min": 14, "range_max": 38 }, "command_skill": { "core": 98, "range_min": 19, "range_max": 45 } }, "action": { "bonus_amount": 4, "name": "Justice", "symbol": "odo_constable_action", "cooldown": 16, "initial_cooldown": 10, "duration": 12, "bonus_type": 0, "crew": 3604769, "icon": { "file": "/crew_icons/cm_odostandard_icon" }, "penalty": { "type": 3, "amount": 800 }, "special": false }, "ship_battle": { "accuracy": 95, "crit_bonus": 50 } }, { "rarity": 1, "level": 40, "base_skills": { "security_skill": { "core": 153, "range_min": 14, "range_max": 38 }, "command_skill": { "core": 83, "range_min": 15, "range_max": 35 } }, "action": { "bonus_amount": 4, "name": "Justice", "symbol": "odo_constable_action", "cooldown": 16, "initial_cooldown": 10, "duration": 12, "bonus_type": 0, "crew": 3604770, "icon": { "file": "/crew_icons/cm_odostandard_icon" }, "penalty": { "type": 3, "amount": 800 }, "special": false }, "ship_battle": { "accuracy": 55, "crit_bonus": 50 } }, { "rarity": 1, "level": 80, "base_skills": { "security_skill": { "core": 309, "range_min": 22, "range_max": 70 }, "command_skill": { "core": 158, "range_min": 67, "range_max": 145 } }, "action": { "bonus_amount": 4, "name": "Justice", "symbol": "odo_constable_action", "cooldown": 16, "initial_cooldown": 10, "duration": 12, "bonus_type": 0, "crew": 3604771, "icon": { "file": "/crew_icons/cm_odostandard_icon" }, "penalty": { "type": 3, "amount": 800 }, "special": false }, "ship_battle": { "accuracy": 220, "crit_chance": 45, "crit_bonus": 200 } }, { "rarity": 1, "level": 90, "base_skills": { "security_skill": { "core": 336, "range_min": 27, "range_max": 85 }, "command_skill": { "core": 169, "range_min": 87, "range_max": 185 } }, "action": { "bonus_amount": 4, "name": "Justice", "symbol": "odo_constable_action", "cooldown": 16, "initial_cooldown": 10, "duration": 12, "bonus_type": 0, "crew": 3604772, "icon": { "file": "/crew_icons/cm_odostandard_icon" }, "penalty": { "type": 3, "amount": 800 }, "special": false }, "ship_battle": { "accuracy": 370, "crit_chance": 45, "crit_bonus": 300 } }, { "rarity": 1, "level": 60, "base_skills": { "security_skill": { "core": 224, "range_min": 19, "range_max": 53 }, "command_skill": { "core": 119, "range_min": 37, "range_max": 85 } }, "action": { "bonus_amount": 4, "name": "Justice", "symbol": "odo_constable_action", "cooldown": 16, "initial_cooldown": 10, "duration": 12, "bonus_type": 0, "crew": 3604773, "icon": { "file": "/crew_icons/cm_odostandard_icon" }, "penalty": { "type": 3, "amount": 800 }, "special": false }, "ship_battle": { "accuracy": 120, "crit_chance": 15, "crit_bonus": 50 } }, { "rarity": 1, "level": 10, "base_skills": { "security_skill": { "core": 65, "range_min": 9, "range_max": 19 }, "command_skill": { "core": 44, "range_min": 7, "range_max": 13 } }, "action": { "bonus_amount": 4, "name": "Justice", "symbol": "odo_constable_action", "cooldown": 16, "initial_cooldown": 10, "duration": 12, "bonus_type": 0, "crew": 3604774, "icon": { "file": "/crew_icons/cm_odostandard_icon" }, "penalty": { "type": 3, "amount": 800 }, "special": false }, "ship_battle": { "accuracy": 30 } }, { "rarity": 1, "level": 70, "base_skills": { "security_skill": { "core": 281, "range_min": 19, "range_max": 53 }, "command_skill": { "core": 146, "range_min": 47, "range_max": 105 } }, "action": { "bonus_amount": 4, "name": "Justice", "symbol": "odo_constable_action", "cooldown": 16, "initial_cooldown": 10, "duration": 12, "bonus_type": 0, "crew": 3604775, "icon": { "file": "/crew_icons/cm_odostandard_icon" }, "penalty": { "type": 3, "amount": 800 }, "special": false }, "ship_battle": { "accuracy": 170, "crit_chance": 15, "crit_bonus": 100 } }
+      ],
+        "is_craftable": true,
+          "imageUrlPortrait": "crew_portraits_cm_odostandard_sm.png",
+            "imageUrlFullBody": "crew_full_body_cm_odostandard_full.png",
+              "series": "ds9",
+                "traits_named": ["Changeling", "Bajoran", "Constable", "Investigator", "Interrogator"],
+                  "collections": ["Rare Crew"],
+                    "totalChronCost": 551,
+                      "factionOnlyTotal": 120,
+                        "craftCost": 230300,
+                          "ranks": {
+    "voyRank": 889,
+      "gauntletRank": 902,
+        "chronCostRank": 57,
+          "B_CMD": 518,
+            "A_CMD": 474,
+              "B_SEC": 340,
+                "A_SEC": 417,
+                  "V_CMD_SCI": 814,
+                    "G_CMD_SCI": 531,
+                      "V_CMD_SEC": 605,
+                        "G_CMD_SEC": 452,
+                          "V_CMD_ENG": 790,
+                            "G_CMD_ENG": 482,
+                              "V_CMD_DIP": 837,
+                                "G_CMD_DIP": 593,
+                                  "V_CMD_MED": 764,
+                                    "G_CMD_MED": 443,
+                                      "V_SCI_SEC": 772,
+                                        "G_SCI_SEC": 795,
+                                          "V_SCI_ENG": 942,
+                                            "V_SCI_DIP": 953,
+                                              "V_SCI_MED": 933,
+                                                "V_SEC_ENG": 717,
+                                                  "G_SEC_ENG": 681,
+                                                    "V_SEC_DIP": 816,
+                                                      "G_SEC_DIP": 824,
+                                                        "V_SEC_MED": 711,
+                                                          "G_SEC_MED": 655,
+                                                            "V_ENG_DIP": 954,
+                                                              "V_ENG_MED": 933,
+                                                                "V_DIP_MED": 945
+  },
+  "bigbook_tier": 4,
+    "events": 17,
+      "in_portal": true,
+        "date_added": "2016-01-01T00:00:00.000Z",
+          "obtained": "Launch",
+            "markdownContent": "Well if Investigator Odo isn’t your cup of tea then say hello to his far superior big brother. Constable shares the same Investigator trait and has the #3 SEC base stat as well. He is a bit tricky to equip, needing a fair few faction items but it’s worth it to knock off some more difficult locked nodes and get a decent SEC crew. Sadly his ship ability is poor and his voyaging potential isn’t the best but he’s solid in other areas."
+}
