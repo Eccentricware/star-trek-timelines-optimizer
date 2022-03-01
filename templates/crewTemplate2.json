@@ -1,0 +1,131 @@
+{
+  "id": 886935834,
+  "symbol": "vash_profiteer_crew",
+  "name": "Profiteer Vash",
+  "short_name": "Vash",
+  "flavor": "Vash looks to make a quick profit by partnering with Quark to hold an auction on Deep Space Nine.",
+  "archetype_id": 17243,
+  "xp": 18455,
+  "xp_for_current_level": 18210,
+  "xp_for_next_level": 19560,
+  "max_xp": 19559,
+  "favorite": true,
+  "level": 50,
+  "in_buy_back_state": false,
+  "max_level": 50,
+  "rarity": 4,
+  "max_rarity": 4,
+  "equipment_rank": 4,
+  "max_equipment_rank": 9,
+  "equipment_slots": [
+    {
+      "level": 40,
+      "archetype": 17312
+    },
+    {
+      "level": 43,
+      "archetype": 1532
+    },
+    {
+      "level": 46,
+      "archetype": 1635
+    },
+    {
+      "level": 50,
+      "archetype": 884
+    }
+  ],
+  "equipment": [],
+  "icon": {
+    "file": "/crew_icons/cm_vash_profiteer_icon"
+  },
+  "portrait": {
+    "file": "/crew_portraits/cm_vash_profiteer_sm"
+  },
+  "full_body": {
+    "file": "/crew_full_body/cm_vash_profiteer_full"
+  },
+  "voice_over": null,
+  "expires_in": null,
+  "active_status": 0,
+  "active_id": null,
+  "active_index": 0,
+  "passive_status": 0,
+  "passive_id": null,
+  "passive_index": 0,
+  "traits": [
+    "human",
+    "exoarchaeology",
+    "federation",
+    "smuggler",
+    "civilian",
+    "merchant",
+    "explorer"
+  ],
+  "traits_hidden": [
+    "female",
+    "organic",
+    "ds9",
+    "vash",
+    "crew_max_rarity_4"
+  ],
+  "skills": {
+    "diplomacy_skill": {
+      "core": 346,
+      "range_min": 31,
+      "range_max": 77
+    },
+    "science_skill": {
+      "core": 278,
+      "range_min": 31,
+      "range_max": 98
+    },
+    "command_skill": {
+      "core": 134,
+      "range_min": 12,
+      "range_max": 18
+    }
+  },
+  "base_skills": {
+    "diplomacy_skill": {
+      "core": 286,
+      "range_min": 27,
+      "range_max": 66
+    },
+    "science_skill": {
+      "core": 238,
+      "range_min": 27,
+      "range_max": 87
+    },
+    "command_skill": {
+      "core": 113,
+      "range_min": 10,
+      "range_max": 15
+    }
+  },
+  "ship_battle": {
+    "crit_chance": 25,
+    "crit_bonus": 30
+  },
+  "action": {
+    "bonus_amount": 8,
+    "name": "A Friend Dropped Me Off",
+    "symbol": "vash_profiteer_action",
+    "cooldown": 12,
+    "initial_cooldown": 8,
+    "duration": 8,
+    "bonus_type": 1,
+    "crew": 886935834,
+    "crew_archetype_id": 17243,
+    "icon": {
+      "file": "/crew_icons/cm_vash_profiteer_icon"
+    },
+    "special": false
+  },
+  "default_avatar": false,
+  "cross_fuse_targets": [],
+  "cap_achiever": {
+    "name": "[SSR] 4*MECHAlobe",
+    "date": 1636563786
+  }
+}

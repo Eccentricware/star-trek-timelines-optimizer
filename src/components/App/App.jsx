@@ -108,7 +108,7 @@ const App = (props) => {
       {mode === 'training' ? <CrewToTrainDisplay rankedCrewToTrain={rankedCrewToTrain}/> : null}
       {mode === 'shuttlery' && <ShuttleRankings rankedShuttleCrew={rankedShuttleCrew}/>}
       {mode === 'loading' ? <div className="loading-message">Loading: {loadingMessage}</div> : null}
-      <div className="update-date">Last Game Roster Update: 1-27-2022</div>
+      <div className="update-date">Last Game Roster Update: 3-1-2022</div>
     </div>
   );
 }

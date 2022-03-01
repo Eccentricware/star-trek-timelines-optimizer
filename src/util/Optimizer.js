@@ -3025,6 +3025,7 @@ const Optimizer = {
     //Populates relevant data for acquired crew
     //Data processed differently if immortalized or not
     dataCoreCrew.forEach((crew, index) => {
+
       // name to index processing for behold access
       Optimizer.nameToIndex[crew.name] = index;
 
@@ -3047,6 +3048,7 @@ const Optimizer = {
           shortName: crew.short_name,
           rarity: crew.max_rarity,
           maxRarity: crew.max_rarity,
+          skills: crew.skills,
           immortalityStatus: {
             fullyEquipped: true,
             fullyLeveled: true,
@@ -4009,9 +4011,6 @@ const Optimizer = {
 
       sortingArray.splice(sortingArray.indexOf(highestContributingTrainee), 1);
     }
-  },
-  findCrewNotCited() {
-
   },
   findBestCitedCrew() {
     //The loop uses skillPairing to assess each voyage combination
