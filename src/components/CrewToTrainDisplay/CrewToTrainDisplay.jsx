@@ -1,9 +1,9 @@
 import React from 'react';
 import CrewToTrainList from '../CrewToTrainList/CrewToTrainList.jsx';
 
-const CrewToTrainDisplay = ({rankedCrewToTrain}) => {
+const CrewToTrainDisplay = ({rankedCrewToTrain, dimLimit}) => {
   return (
-    <CrewToTrainList rankedCrewToTrain={rankedCrewToTrain}/>
+    <CrewToTrainList rankedCrewToTrain={rankedCrewToTrain} dimLimit={dimLimit}/>
   )
 }
 

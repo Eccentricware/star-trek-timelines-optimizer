@@ -9,43 +9,43 @@ import MedicineIcon from '../Icons/MedicineIcon.jsx';
 import ScienceIcon from '../Icons/ScienceIcon.jsx';
 import SecurityIcon from '../Icons/SecurityIcon.jsx';
 
-const CrewToTrain = ({crew, rank}) => {
+const CrewToTrain = ({crew, rank, dimLimit}) => {
   const icons = {
     command: {
-      primary: <CommandIcon color='gold'position={0}/>,
-      secondary: <CommandIcon color='silver'position={0}/>,
-      tertiary: <CommandIcon color='#b08d57'position={0}/>,
-      voyageSecondary: <CommandIcon color='silver' position={0} />
+      primary: <CommandIcon color='gold'position={0}dimLimit={dimLimit}/>,
+      secondary: <CommandIcon color='silver'position={0}dimLimit={dimLimit}/>,
+      tertiary: <CommandIcon color='#b08d57'position={0}dimLimit={dimLimit}/>,
+      voyageSecondary: <CommandIcon color='silver' position={0} dimLimit={dimLimit}/>
     },
     diplomacy: {
-      primary: <DiplomacyIcon color='gold' position={0}/>,
-      secondary: <DiplomacyIcon color='silver' position={0}/>,
-      tertiary: <DiplomacyIcon color='#b08d57' position={0}/>,
-      voyageSecondary: <DiplomacyIcon color='silver' position={0} />
+      primary: <DiplomacyIcon color='gold' position={0}dimLimit={dimLimit}/>,
+      secondary: <DiplomacyIcon color='silver' position={0}dimLimit={dimLimit}/>,
+      tertiary: <DiplomacyIcon color='#b08d57' position={0}dimLimit={dimLimit}/>,
+      voyageSecondary: <DiplomacyIcon color='silver' position={0} dimLimit={dimLimit}/>
     },
     engineering: {
-      primary: <EngineeringIcon color='gold' position={0}/>,
-      secondary: <EngineeringIcon color='silver' position={0}/>,
-      tertiary: <EngineeringIcon color='#b08d57' position={0}/>,
-      voyageSecondary: <EngineeringIcon color='silver' position={0} />
+      primary: <EngineeringIcon color='gold' position={0}dimLimit={dimLimit}/>,
+      secondary: <EngineeringIcon color='silver' position={0}dimLimit={dimLimit}/>,
+      tertiary: <EngineeringIcon color='#b08d57' position={0}dimLimit={dimLimit}/>,
+      voyageSecondary: <EngineeringIcon color='silver' position={0} dimLimit={dimLimit}/>
     },
     medicine: {
-      primary: <MedicineIcon color='gold' position={0}/>,
-      secondary: <MedicineIcon color='silver' position={0}/>,
-      tertiary: <MedicineIcon color='#b08d57' position={0}/>,
-      voyageSecondary: <MedicineIcon color='silver' position={0} />
+      primary: <MedicineIcon color='gold' position={0}dimLimit={dimLimit}/>,
+      secondary: <MedicineIcon color='silver' position={0}dimLimit={dimLimit}/>,
+      tertiary: <MedicineIcon color='#b08d57' position={0}dimLimit={dimLimit}/>,
+      voyageSecondary: <MedicineIcon color='silver' position={0} dimLimit={dimLimit}/>
     },
     science: {
-      primary: <ScienceIcon color='gold' position={0}/>,
-      secondary: <ScienceIcon color='silver' position={0}/>,
-      tertiary: <ScienceIcon color='#b08d57' position={0}/>,
-      voyageSecondary: <ScienceIcon color='silver' position={0} />
+      primary: <ScienceIcon color='gold' position={0}dimLimit={dimLimit}/>,
+      secondary: <ScienceIcon color='silver' position={0}dimLimit={dimLimit}/>,
+      tertiary: <ScienceIcon color='#b08d57' position={0}dimLimit={dimLimit}/>,
+      voyageSecondary: <ScienceIcon color='silver' position={0} dimLimit={dimLimit}/>
     },
     security: {
-      primary: <SecurityIcon color='gold' position={0}/>,
-      secondary: <SecurityIcon color='silver' position={0}/>,
-      tertiary: <SecurityIcon color='#b08d57' position={0}/>,
-      voyageSecondary: <SecurityIcon color='silver' position={0} />
+      primary: <SecurityIcon color='gold' position={0}dimLimit={dimLimit}/>,
+      secondary: <SecurityIcon color='silver' position={0}dimLimit={dimLimit}/>,
+      tertiary: <SecurityIcon color='#b08d57' position={0}dimLimit={dimLimit}/>,
+      voyageSecondary: <SecurityIcon color='silver' position={0} dimLimit={dimLimit}/>
     },
   }
   return (
