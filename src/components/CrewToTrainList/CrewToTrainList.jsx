@@ -1,7 +1,7 @@
 import React from 'react';
 import CrewToTrain from '../CrewToTrain/CrewToTrain.jsx';
 
-const CrewToTrainList = ({rankedCrewToTrain}) => {
+const CrewToTrainList = ({rankedCrewToTrain, dimLimit}) => {
   return(
     <table>
       <thead>
@@ -17,7 +17,7 @@ const CrewToTrainList = ({rankedCrewToTrain}) => {
       <tbody>
         {
           rankedCrewToTrain.map((crew, i) => {
-            return <CrewToTrain key={i} rank={i+1} crew={crew}/>
+            return <CrewToTrain key={i} rank={i+1} crew={crew} dimLimit={dimLimit}/>
           })
         }
       </tbody>

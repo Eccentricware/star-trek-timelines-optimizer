@@ -1,7 +1,7 @@
 import React from 'react';
 import CrewToCite from '../CrewToCite/CrewToCite.jsx';
 
-const CrewToCiteList = ({rankedCrewToCite}) => {
+const CrewToCiteList = ({rankedCrewToCite, dimLimit}) => {
   return (
     <table>
       <thead>
@@ -15,7 +15,7 @@ const CrewToCiteList = ({rankedCrewToCite}) => {
       <tbody>
         {
           rankedCrewToCite.map((crew, i) => {
-            return <CrewToCite key={i} rank={i + 1} crew={crew}/>
+            return <CrewToCite key={i} rank={i + 1} crew={crew} dimLimit={dimLimit}/>
           })
         }
       </tbody>

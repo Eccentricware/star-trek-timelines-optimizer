@@ -17,7 +17,7 @@ const App = (props) => {
   const [mode, setMode] = useState('waiting');
   const [loadingMessage, setLoadingMessage] = useState('');
   const [beholdCrew, setBeholdCrew] = useState(Optimizer.beholdCrew);
-
+  const [dimLimit, setDimLimit] = useState(25);
 
   function startProcessing(saveData) {
     var loadingMessages = [
@@ -70,7 +70,7 @@ const App = (props) => {
     setRankedCrewToTrain(Optimizer.rankedCrewToTrain);
     setRankedCrewToCite(Optimizer.rankedCrewToCite);
     setRankedShuttleCrew(Optimizer.rankedCrewForShuttles);
-    setMode('behold');
+    setMode('citation');
   }
 
   const processCandidate = (slot, name) => {
@@ -104,8 +104,8 @@ const App = (props) => {
         />
         : null
       }
-      {mode === 'citation' ? <CrewToCiteDisplay rankedCrewToCite={rankedCrewToCite}/> : null}
-      {mode === 'training' ? <CrewToTrainDisplay rankedCrewToTrain={rankedCrewToTrain}/> : null}
+      {mode === 'citation' ? <CrewToCiteDisplay rankedCrewToCite={rankedCrewToCite} dimLimit={dimLimit}/> : null}
+      {mode === 'training' ? <CrewToTrainDisplay rankedCrewToTrain={rankedCrewToTrain} dimLimit={dimLimit}/> : null}
       {mode === 'shuttlery' && <ShuttleRankings rankedShuttleCrew={rankedShuttleCrew}/>}
       {mode === 'loading' ? <div className="loading-message">Loading: {loadingMessage}</div> : null}
       <div className="update-date">Last Game Roster Update: 3-1-2022</div>

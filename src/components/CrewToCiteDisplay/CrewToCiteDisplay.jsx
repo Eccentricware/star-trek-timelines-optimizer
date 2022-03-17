@@ -1,9 +1,9 @@
 import React from 'react';
 import CrewToCiteList from '../CrewToCiteList/CrewToCiteList.jsx';
 
-const CrewToCiteDisplay = ({rankedCrewToCite}) => {
+const CrewToCiteDisplay = ({rankedCrewToCite, dimLimit}) => {
   return (
-    <CrewToCiteList rankedCrewToCite={rankedCrewToCite}/>
+    <CrewToCiteList rankedCrewToCite={rankedCrewToCite} dimLimit={dimLimit}/>
   )
 }
 
