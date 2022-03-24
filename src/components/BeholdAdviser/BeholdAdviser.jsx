@@ -31,40 +31,40 @@ const BeholdAdviser = (props) => {
 
   const icons = {
     command: {
-      primary: <CommandIcon color='gold' position={0} />,
-      secondary: <CommandIcon color='silver' position={6} />,
-      tertiary: <CommandIcon color='#b08d57' position={6} />,
-      voyageSecondary: <CommandIcon color='silver' position={22} />
+      primary: <CommandIcon color='gold' position={0} dimLimit={props.dimLimit}/>,
+      secondary: <CommandIcon color='silver' position={6} dimLimit={props.dimLimit}/>,
+      tertiary: <CommandIcon color='#b08d57' position={6} dimLimit={props.dimLimit}/>,
+      voyageSecondary: <CommandIcon color='silver' position={22} dimLimit={props.dimLimit}/>
     },
     diplomacy: {
-      primary: <DiplomacyIcon color='gold' position={-6} />,
-      secondary: <DiplomacyIcon color='silver' position={0} />,
-      tertiary: <DiplomacyIcon color='#b08d57' position={-6} />,
-      voyageSecondary: <DiplomacyIcon color='silver' position={10} />
+      primary: <DiplomacyIcon color='gold' position={-6} dimLimit={props.dimLimit}/>,
+      secondary: <DiplomacyIcon color='silver' position={0} dimLimit={props.dimLimit}/>,
+      tertiary: <DiplomacyIcon color='#b08d57' position={-6} dimLimit={props.dimLimit}/>,
+      voyageSecondary: <DiplomacyIcon color='silver' position={10} dimLimit={props.dimLimit}/>
     },
     engineering: {
-      primary: <EngineeringIcon color='gold' position={0} />,
-      secondary: <EngineeringIcon color='silver' position={0} />,
-      tertiary: <EngineeringIcon color='#b08d57' position={0} />,
-      voyageSecondary: <EngineeringIcon color='silver' position={24} />
+      primary: <EngineeringIcon color='gold' position={0} dimLimit={props.dimLimit}/>,
+      secondary: <EngineeringIcon color='silver' position={0} dimLimit={props.dimLimit}/>,
+      tertiary: <EngineeringIcon color='#b08d57' position={0} dimLimit={props.dimLimit}/>,
+      voyageSecondary: <EngineeringIcon color='silver' position={24} dimLimit={props.dimLimit}/>
     },
     medicine: {
-      primary: <MedicineIcon color='gold' position={0} />,
-      secondary: <MedicineIcon color='silver' position={0} />,
-      tertiary: <MedicineIcon color='#b08d57' position={0} />,
-      voyageSecondary: <MedicineIcon color='silver' position={24} />
+      primary: <MedicineIcon color='gold' position={0} dimLimit={props.dimLimit}/>,
+      secondary: <MedicineIcon color='silver' position={0} dimLimit={props.dimLimit}/>,
+      tertiary: <MedicineIcon color='#b08d57' position={0} dimLimit={props.dimLimit}/>,
+      voyageSecondary: <MedicineIcon color='silver' position={24} dimLimit={props.dimLimit}/>
     },
     science: {
-      primary: <ScienceIcon color='gold' position={0} />,
-      secondary: <ScienceIcon color='silver' position={0} />,
-      tertiary: <ScienceIcon color='#b08d57' position={8} />,
-      voyageSecondary: <ScienceIcon color='silver' position={24} />
+      primary: <ScienceIcon color='gold' position={0} dimLimit={props.dimLimit}/>,
+      secondary: <ScienceIcon color='silver' position={0} dimLimit={props.dimLimit}/>,
+      tertiary: <ScienceIcon color='#b08d57' position={8} dimLimit={props.dimLimit}/>,
+      voyageSecondary: <ScienceIcon color='silver' position={24} dimLimit={props.dimLimit}/>
     },
     security: {
-      primary: <SecurityIcon color='gold' position={0} />,
-      secondary: <SecurityIcon color='silver' position={0} />,
-      tertiary: <SecurityIcon color='#b08d57' position={0} />,
-      voyageSecondary: <SecurityIcon color='silver' position={24} />
+      primary: <SecurityIcon color='gold' position={0} dimLimit={props.dimLimit}/>,
+      secondary: <SecurityIcon color='silver' position={0} dimLimit={props.dimLimit}/>,
+      tertiary: <SecurityIcon color='#b08d57' position={0} dimLimit={props.dimLimit}/>,
+      voyageSecondary: <SecurityIcon color='silver' position={24} dimLimit={props.dimLimit}/>
     },
   }
 
@@ -150,9 +150,9 @@ const BeholdAdviser = (props) => {
                       {
                         props.beholdCrew.slot1.rarityPotential[5].voyagesImproved.map((voyagePair, i) => {
                           return (
-                            <svg width="50" height="22" viewBox="0 0 50 22" padding="0" key={i}>
-                              {icons[voyagePair.split('/')[1]].voyageSecondary}
-                              {icons[voyagePair.split('/')[0]].primary}
+                            <svg width="50" height="25" viewBox="0 0 50 25" padding="0" key={i}>
+                              <g transform="translate(12.5 0)">{icons[voyagePair.split('/')[1]].voyageSecondary}</g>
+                              <g>{icons[voyagePair.split('/')[0]].primary}</g>
                             </svg>
                           )
                         })
@@ -177,9 +177,9 @@ const BeholdAdviser = (props) => {
                         {
                           props.beholdCrew.slot1.rarityPotential[4].voyagesImproved.map((voyagePair, i) => {
                             return (
-                              <svg width="50" height="22" viewBox="0 0 50 22" padding="0" key={i}>
-                                {icons[voyagePair.split('/')[1]].voyageSecondary}
-                                {icons[voyagePair.split('/')[0]].primary}
+                              <svg width="50" height="25" viewBox="0 0 50 25" padding="0" key={i}>
+                                <g transform="translate(12.5 0)">{icons[voyagePair.split('/')[1]].voyageSecondary}</g>
+                                <g>{icons[voyagePair.split('/')[0]].primary}</g>
                               </svg>
                             )
                           })
@@ -204,9 +204,9 @@ const BeholdAdviser = (props) => {
                         {
                           props.beholdCrew.slot1.rarityPotential[3].voyagesImproved.map((voyagePair, i) => {
                             return (
-                              <svg width="50" height="22" viewBox="0 0 50 22" padding="0" key={i}>
-                                {icons[voyagePair.split('/')[1]].voyageSecondary}
-                                {icons[voyagePair.split('/')[0]].primary}
+                              <svg width="50" height="25" viewBox="0 0 50 25" padding="0" key={i}>
+                                <g transform="translate(12.5 0)">{icons[voyagePair.split('/')[1]].voyageSecondary}</g>
+                                <g>{icons[voyagePair.split('/')[0]].primary}</g>
                               </svg>
                             )
                           })
@@ -231,9 +231,9 @@ const BeholdAdviser = (props) => {
                         {
                           props.beholdCrew.slot1.rarityPotential[2].voyagesImproved.map((voyagePair, i) => {
                             return (
-                              <svg width="50" height="22" viewBox="0 0 50 22" padding="0" key={i}>
-                                {icons[voyagePair.split('/')[1]].voyageSecondary}
-                                {icons[voyagePair.split('/')[0]].primary}
+                              <svg width="50" height="25" viewBox="0 0 50 25" padding="0" key={i}>
+                                <g transform="translate(12.5 0)">{icons[voyagePair.split('/')[1]].voyageSecondary}</g>
+                                <g>{icons[voyagePair.split('/')[0]].primary}</g>
                               </svg>
                             )
                           })
@@ -258,9 +258,9 @@ const BeholdAdviser = (props) => {
                         {
                           props.beholdCrew.slot1.rarityPotential[1].voyagesImproved.map((voyagePair, i) => {
                             return (
-                              <svg width="50" height="22" viewBox="0 0 50 22" padding="0" key={i}>
-                                {icons[voyagePair.split('/')[1]].voyageSecondary}
-                                {icons[voyagePair.split('/')[0]].primary}
+                              <svg width="50" height="25" viewBox="0 0 50 25" padding="0" key={i}>
+                                <g transform="translate(12.5 0)">{icons[voyagePair.split('/')[1]].voyageSecondary}</g>
+                                <g>{icons[voyagePair.split('/')[0]].primary}</g>
                               </svg>
                             )
                           })
@@ -291,9 +291,9 @@ const BeholdAdviser = (props) => {
                         {
                           props.beholdCrew.slot2.rarityPotential[5].voyagesImproved.map((voyagePair, i) => {
                             return (
-                              <svg width="50" height="22" viewBox="0 0 50 22" padding="0" key={i}>
-                                {icons[voyagePair.split('/')[1]].voyageSecondary}
-                                {icons[voyagePair.split('/')[0]].primary}
+                              <svg width="50" height="25" viewBox="0 0 50 25" padding="0" key={i}>
+                                <g transform="translate(12.5 0)">{icons[voyagePair.split('/')[1]].voyageSecondary}</g>
+                                <g>{icons[voyagePair.split('/')[0]].primary}</g>
                               </svg>
                             )
                           })
@@ -318,9 +318,9 @@ const BeholdAdviser = (props) => {
                         {
                           props.beholdCrew.slot2.rarityPotential[4].voyagesImproved.map((voyagePair, i) => {
                             return (
-                              <svg width="50" height="22" viewBox="0 0 50 22" padding="0" key={i}>
-                                {icons[voyagePair.split('/')[1]].voyageSecondary}
-                                {icons[voyagePair.split('/')[0]].primary}
+                              <svg width="50" height="25" viewBox="0 0 50 25" padding="0" key={i}>
+                                <g transform="translate(12.5 0)">{icons[voyagePair.split('/')[1]].voyageSecondary}</g>
+                                <g>{icons[voyagePair.split('/')[0]].primary}</g>
                               </svg>
                             )
                           })
@@ -345,9 +345,9 @@ const BeholdAdviser = (props) => {
                         {
                           props.beholdCrew.slot2.rarityPotential[3].voyagesImproved.map((voyagePair, i) => {
                             return (
-                              <svg width="50" height="22" viewBox="0 0 50 22" padding="0" key={i}>
-                                {icons[voyagePair.split('/')[1]].voyageSecondary}
-                                {icons[voyagePair.split('/')[0]].primary}
+                              <svg width="50" height="25" viewBox="0 0 50 25" padding="0" key={i}>
+                                <g transform="translate(12.5 0)">{icons[voyagePair.split('/')[1]].voyageSecondary}</g>
+                                <g>{icons[voyagePair.split('/')[0]].primary}</g>
                               </svg>
                             )
                           })
@@ -372,9 +372,9 @@ const BeholdAdviser = (props) => {
                         {
                           props.beholdCrew.slot2.rarityPotential[2].voyagesImproved.map((voyagePair, i) => {
                             return (
-                              <svg width="50" height="22" viewBox="0 0 50 22" padding="0" key={i}>
-                                {icons[voyagePair.split('/')[1]].voyageSecondary}
-                                {icons[voyagePair.split('/')[0]].primary}
+                              <svg width="50" height="25" viewBox="0 0 50 25" padding="0" key={i}>
+                                <g transform="translate(12.5 0)">{icons[voyagePair.split('/')[1]].voyageSecondary}</g>
+                                <g>{icons[voyagePair.split('/')[0]].primary}</g>
                               </svg>
                             )
                           })
@@ -399,9 +399,9 @@ const BeholdAdviser = (props) => {
                         {
                           props.beholdCrew.slot2.rarityPotential[1].voyagesImproved.map((voyagePair, i) => {
                             return (
-                              <svg width="50" height="22" viewBox="0 0 50 22" padding="0" key={i}>
-                                {icons[voyagePair.split('/')[1]].voyageSecondary}
-                                {icons[voyagePair.split('/')[0]].primary}
+                              <svg width="50" height="25" viewBox="0 0 50 25" padding="0" key={i}>
+                                <g transform="translate(12.5 0)">{icons[voyagePair.split('/')[1]].voyageSecondary}</g>
+                                <g>{icons[voyagePair.split('/')[0]].primary}</g>
                               </svg>
                             )
                           })
@@ -432,9 +432,9 @@ const BeholdAdviser = (props) => {
                         {
                           props.beholdCrew.slot3.rarityPotential[5].voyagesImproved.map((voyagePair, i) => {
                             return (
-                              <svg width="50" height="22" viewBox="0 0 50 22" padding="0" key={i}>
-                                {icons[voyagePair.split('/')[1]].voyageSecondary}
-                                {icons[voyagePair.split('/')[0]].primary}
+                              <svg width="50" height="25" viewBox="0 0 50 25" padding="0" key={i}>
+                                <g transform="translate(12.5 0)">{icons[voyagePair.split('/')[1]].voyageSecondary}</g>
+                                <g>{icons[voyagePair.split('/')[0]].primary}</g>
                               </svg>
                             )
                           })
@@ -459,9 +459,9 @@ const BeholdAdviser = (props) => {
                         {
                           props.beholdCrew.slot3.rarityPotential[4].voyagesImproved.map((voyagePair, i) => {
                             return (
-                              <svg width="50" height="22" viewBox="0 0 50 22" padding="0" key={i}>
-                                {icons[voyagePair.split('/')[1]].voyageSecondary}
-                                {icons[voyagePair.split('/')[0]].primary}
+                              <svg width="50" height="25" viewBox="0 0 50 25" padding="0" key={i}>
+                                <g transform="translate(12.5 0)">{icons[voyagePair.split('/')[1]].voyageSecondary}</g>
+                                <g>{icons[voyagePair.split('/')[0]].primary}</g>
                               </svg>
                             )
                           })
@@ -486,9 +486,9 @@ const BeholdAdviser = (props) => {
                         {
                           props.beholdCrew.slot3.rarityPotential[3].voyagesImproved.map((voyagePair, i) => {
                             return (
-                              <svg width="50" height="22" viewBox="0 0 50 22" padding="0" key={i}>
-                                {icons[voyagePair.split('/')[1]].voyageSecondary}
-                                {icons[voyagePair.split('/')[0]].primary}
+                              <svg width="50" height="25" viewBox="0 0 50 25" padding="0" key={i}>
+                                <g transform="translate(12.5 0)">{icons[voyagePair.split('/')[1]].voyageSecondary}</g>
+                                <g>{icons[voyagePair.split('/')[0]].primary}</g>
                               </svg>
                             )
                           })
@@ -513,9 +513,9 @@ const BeholdAdviser = (props) => {
                         {
                           props.beholdCrew.slot3.rarityPotential[2].voyagesImproved.map((voyagePair, i) => {
                             return (
-                              <svg width="50" height="22" viewBox="0 0 50 22" padding="0" key={i}>
-                                {icons[voyagePair.split('/')[1]].voyageSecondary}
-                                {icons[voyagePair.split('/')[0]].primary}
+                              <svg width="50" height="25" viewBox="0 0 50 25" padding="0" key={i}>
+                                <g transform="translate(12.5 0)">{icons[voyagePair.split('/')[1]].voyageSecondary}</g>
+                                <g>{icons[voyagePair.split('/')[0]].primary}</g>
                               </svg>
                             )
                           })
@@ -540,9 +540,9 @@ const BeholdAdviser = (props) => {
                         {
                           props.beholdCrew.slot3.rarityPotential[1].voyagesImproved.map((voyagePair, i) => {
                             return (
-                              <svg width="50" height="22" viewBox="0 0 50 22" padding="0" key={i}>
-                                {icons[voyagePair.split('/')[1]].voyageSecondary}
-                                {icons[voyagePair.split('/')[0]].primary}
+                              <svg width="50" height="25" viewBox="0 0 50 25" padding="0" key={i}>
+                                <g transform="translate(12.5 0)">{icons[voyagePair.split('/')[1]].voyageSecondary}</g>
+                                <g>{icons[voyagePair.split('/')[0]].primary}</g>
                               </svg>
                             )
                           })
