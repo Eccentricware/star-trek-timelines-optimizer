@@ -6,14 +6,14 @@ import MedicineIcon from '../Icons/MedicineIcon.jsx';
 import ScienceIcon from '../Icons/ScienceIcon.jsx';
 import SecurityIcon from '../Icons/SecurityIcon.jsx';
 
-const ShuttleRankings = ({rankedShuttleCrew}) => {
+const ShuttleRankings = ({rankedShuttleCrew, dimLimit}) => {
   const icons = {
-    command: <CommandIcon color='gold' position={0}/>,
-    diplomacy: <DiplomacyIcon color='gold' position={-6}/>,
-    engineering: <EngineeringIcon color='gold' position={0}/>,
-    medicine: <MedicineIcon color='gold' position={0}/>,
-    science: <ScienceIcon color='gold' position={0}/>,
-    security: <SecurityIcon color='gold' position={0}/>
+    command: <CommandIcon color='gold' position={0} dimLimit={dimLimit}/>,
+    diplomacy: <DiplomacyIcon color='gold' position={0} dimLimit={dimLimit}/>,
+    engineering: <EngineeringIcon color='gold' position={0} dimLimit={dimLimit}/>,
+    medicine: <MedicineIcon color='gold' position={0} dimLimit={dimLimit}/>,
+    science: <ScienceIcon color='gold' position={0} dimLimit={dimLimit}/>,
+    security: <SecurityIcon color='gold' position={0} dimLimit={dimLimit}/>
   }
 
   return (

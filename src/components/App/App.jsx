@@ -18,6 +18,7 @@ const App = (props) => {
   const [loadingMessage, setLoadingMessage] = useState('');
   const [beholdCrew, setBeholdCrew] = useState(Optimizer.beholdCrew);
   const [dimLimit, setDimLimit] = useState(25);
+  const [toggleMe, setToggleMe] = useState(false);
 
   function startProcessing(saveData) {
     var loadingMessages = [
@@ -79,9 +80,8 @@ const App = (props) => {
     console.log(Optimizer.beholdCrew[slot]);
     Optimizer.findBeholdCrewPotential(slot);
     setBeholdCrew(Optimizer.beholdCrew);
-    setTimeout(() => {
-      setMode('behold');
-    }, 0);
+    setMode('behold');
+    setToggleMe(!toggleMe);
   }
 
   return (
@@ -107,7 +107,8 @@ const App = (props) => {
       }
       {mode === 'citation' ? <CrewToCiteDisplay rankedCrewToCite={rankedCrewToCite} dimLimit={dimLimit}/> : null}
       {mode === 'training' ? <CrewToTrainDisplay rankedCrewToTrain={rankedCrewToTrain} dimLimit={dimLimit}/> : null}
-      {mode === 'shuttlery' && <ShuttleRankings rankedShuttleCrew={rankedShuttleCrew}/>}
+      {mode === 'shuttlery' && <ShuttleRankings rankedShuttleCrew={rankedShuttleCrew}
+        dimLimit={dimLimit}/>}
       {mode === 'loading' ? <div className="loading-message">Loading: {loadingMessage}</div> : null}
       <div className="update-date">Last Game Roster Update: 3-23-2022</div>
     </div>
