@@ -92,6 +92,7 @@ const App = (props) => {
           ?
         <BeholdAdviser processCandidate={processCandidate}
           beholdCrew={beholdCrew}
+          dimLimit={dimLimit}
         />
           :
         null
@@ -108,7 +109,7 @@ const App = (props) => {
       {mode === 'training' ? <CrewToTrainDisplay rankedCrewToTrain={rankedCrewToTrain} dimLimit={dimLimit}/> : null}
       {mode === 'shuttlery' && <ShuttleRankings rankedShuttleCrew={rankedShuttleCrew}/>}
       {mode === 'loading' ? <div className="loading-message">Loading: {loadingMessage}</div> : null}
-      <div className="update-date">Last Game Roster Update: 3-17-2022</div>
+      <div className="update-date">Last Game Roster Update: 3-23-2022</div>
     </div>
   );
 }
