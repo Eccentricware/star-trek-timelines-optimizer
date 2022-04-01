@@ -24,7 +24,6 @@ const ShuttleRankings = ({rankedShuttleCrew, dimLimit}) => {
           skillIcons.forEach((skill, index) => {
             skillIcons[index] = icons[skill.slice(0, skill.indexOf('_'))];
           });
-          console.log('Identified skills in jsx:', skillIcons);
           return (
             <div key={skill.signature} className="shuttle-table">
                 <div>

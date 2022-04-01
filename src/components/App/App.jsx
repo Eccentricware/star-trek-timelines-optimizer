@@ -110,7 +110,7 @@ const App = (props) => {
       {mode === 'shuttlery' && <ShuttleRankings rankedShuttleCrew={rankedShuttleCrew}
         dimLimit={dimLimit}/>}
       {mode === 'loading' ? <div className="loading-message">Loading: {loadingMessage}</div> : null}
-      <div className="update-date">Last Game Roster Update: 3-23-2022</div>
+      <div className="update-date">Last Game Roster Update: 4-1-2022</div>
     </div>
   );
 }
